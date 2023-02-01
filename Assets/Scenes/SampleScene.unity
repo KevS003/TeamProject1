@@ -438,6 +438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 915102645}
+  - component: {fileID: 915102646}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -460,6 +461,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915102646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915102644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51f139d33a72fb498e27b9505a3f6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallEnemy: {fileID: 407151373848148423, guid: f1d7b7cb0f658894799a2f41b9392953, type: 3}
+  toughEnemy: {fileID: 0}
+  bigEnemy: {fileID: 0}
+  spawnRateSmall: 2.5
+  spawnRateTough: 5
+  spawnRateBig: 10
 --- !u!1 &981820517
 GameObject:
   m_ObjectHideFlags: 0
