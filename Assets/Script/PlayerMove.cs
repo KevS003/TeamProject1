@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     public float bulletSpeed = 5000.0f;
     public float originalBspeed = 5000.0f;
     public float shotsPerS = 20.0f;
-    public float lvlTimer = 30.0f;
+    static public float lvlTimer = 30.0f;
     public int score = 0;
     float firedRound;
     int cHealth;
@@ -62,10 +62,15 @@ public class PlayerMove : MonoBehaviour
             if(weaponType<3)
             {
                 weaponType++;
+                if(weaponType==2)
+                    bulletSpeed *= .60f;
+                else if(weaponType==3)
+                    bulletSpeed *= .25f;
             }
             else
             {
                 weaponType = 1;
+                bulletSpeed = originalBspeed;
             }
             
             
@@ -92,8 +97,6 @@ public class PlayerMove : MonoBehaviour
             if(Time.time - firedRound >1/shotsPerS)
             {
                 firedRound = Time.time;
-                alreadyMult = 0;
-                bulletSpeed = originalBspeed;
                 GameObject projectileObject = Instantiate(projectileRapid, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);//NO ROTATION
                 WeaponFire projectile = projectileObject.GetComponent<WeaponFire>();
                 projectile.Launch(bulletSpeed);    
@@ -102,11 +105,6 @@ public class PlayerMove : MonoBehaviour
         else if(weaponType == 2)
         {
             shotsPerS= 2;
-            if(alreadyMult == 0)
-            {
-                bulletSpeed *= 0.60f;
-                alreadyMult = 1;
-            }
             if(Time.time - firedRound>1/shotsPerS)
             {
                 firedRound = Time.time;
@@ -118,11 +116,6 @@ public class PlayerMove : MonoBehaviour
         else if (weaponType == 3)
         {
             shotsPerS = 1;
-            if(alreadyMult == 1)
-            {
-                bulletSpeed *= .25f;
-                alreadyMult = 2;
-            }
             if(Time.time - firedRound>1/shotsPerS)
             {
                 firedRound = Time.time;
