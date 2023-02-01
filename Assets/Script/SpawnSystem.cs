@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//https://opengameart.org/content/creepy-forest-f
+//https://opengameart.org/content/boss-battle-music
+//https://opengameart.org/content/tragic-ambient-main-menu
 public class SpawnSystem : MonoBehaviour
 {
     
@@ -11,11 +14,11 @@ public class SpawnSystem : MonoBehaviour
    
     public GameObject bigEnemy;
     [SerializeField]
-    private float spawnRateSmall= 2.5f;
+    private float spawnRateSmall= 2.5f;//small ghost
     [SerializeField]
-    private float spawnRateTough = 5.0f;
+    private float spawnRateTough = 5.0f;//shields to b popped by rocket
     [SerializeField]
-    private float spawnRateBig= 10;
+    private float spawnRateBig= 10;//
     // Start is called before the first frame update
     void Start()
     {

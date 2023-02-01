@@ -8,11 +8,12 @@ using UnityEngine.Sprites;
 
 public class PlayerMove : MonoBehaviour
 {
+    //health system adds health based on score
     Animator animator;
     static public int lvlNum= 1;
-    public int maxHealth= 3;
+    public int maxHealth= 3;//when you lose a life reset to power 1
     public int alreadyMult = 0;
-    public float speed = 4.0f;
+    public float speed = 15f;
     public float bulletSpeed = 5000.0f;
     public float originalBspeed = 5000.0f;
     public float shotsPerS = 20.0f;
@@ -32,8 +33,9 @@ public class PlayerMove : MonoBehaviour
     float hori;
     float verti;
     int weaponType = 1;
+    float originalP;
 
-    
+    //lazers destroy enemy projectile
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,7 @@ public class PlayerMove : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         cHealth = maxHealth;
         originalBspeed = bulletSpeed;
+        originalP = speed;
     }
 
     // Update is called once per frame
@@ -57,23 +60,29 @@ public class PlayerMove : MonoBehaviour
         {
             //send to next level if alive.
         }
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R))//bomb to q
         {
-            if(weaponType<3)
+            if(weaponType<2)
             {
                 weaponType++;
                 if(weaponType==2)
                     bulletSpeed *= .60f;
-                else if(weaponType==3)
-                    bulletSpeed *= .25f;
+                    speed = 7;
+                /*else if(weaponType==3)
+                    bulletSpeed *= .25f;*/
             }
             else
             {
+                speed = originalP;
                 weaponType = 1;
                 bulletSpeed = originalBspeed;
             }
             
             
+        }
+        if(Input.GetKeyDown(KeyCode.Q))//Make as an emergency
+        {
+            bomb();
         }
         if(Input.GetKey(KeyCode.Space))
         {
@@ -94,7 +103,7 @@ public class PlayerMove : MonoBehaviour
         if(weaponType == 1)
         {
             shotsPerS= 20;
-            if(Time.time - firedRound >1/shotsPerS)
+            if(Time.time - firedRound >1/shotsPerS)//POWER UP: extra swords that track enemy
             {
                 firedRound = Time.time;
                 GameObject projectileObject = Instantiate(projectileRapid, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);//NO ROTATION
@@ -102,27 +111,20 @@ public class PlayerMove : MonoBehaviour
                 projectile.Launch(bulletSpeed);    
             }
         }
-        else if(weaponType == 2)
+        else if(weaponType == 2)//beam
         {
-            shotsPerS= 2;
-            if(Time.time - firedRound>1/shotsPerS)
-            {
                 firedRound = Time.time;
                 GameObject projectileObject = Instantiate(projectileRocket, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
                 WeaponFire projectile = projectileObject.GetComponent<WeaponFire>();
                 projectile.Launch(bulletSpeed);
-            }
         }
-        else if (weaponType == 3)
-        {
-            shotsPerS = 1;
-            if(Time.time - firedRound>1/shotsPerS)
-            {
+    }
+    void bomb()
+    {
                 firedRound = Time.time;
                 GameObject projectileObject = Instantiate(projectileGrenade, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
                 WeaponFire projectile = projectileObject.GetComponent<WeaponFire>();
                 projectile.Launch(bulletSpeed);  
-            } 
-        }
+            
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SmallEnemy : MonoBehaviour
 {
-    //boundaries/zigzag
+    //boundaries/zigzag//drops sword upgrade
     public GameObject top;
     public GameObject bottom;
     public GameObject left;
@@ -24,9 +24,12 @@ public class SmallEnemy : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 spot = rigidbody2dE.position;
-        spot.y = spot.y + Time.deltaTime * speed * -1;//direction turns it pos or negative
-          
+        spot.y = spot.y + Time.deltaTime * speed * -1;//direction turns it pos or negative   
         spot.x = spot.x + Time.deltaTime * speed * lnR;
-        
     }
+   /* void OnCollisionEnter(Colle)
+    {
+
+    }*/
+    
 }
