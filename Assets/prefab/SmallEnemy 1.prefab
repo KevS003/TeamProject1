@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 407151373848148421}
   - component: {fileID: 407151373848148420}
   - component: {fileID: 2681924053498731880}
+  - component: {fileID: -2648759591624923591}
   m_Layer: 0
   m_Name: SmallEnemy 1
   m_TagString: Untagged
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 021490fb7d1c8364c93b3d167a667333, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -123,4 +124,30 @@ MonoBehaviour:
   bottom: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  speed: 0
+  speed: 5
+--- !u!61 &-2648759591624923591
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407151373848148423}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 021490fb7d1c8364c93b3d167a667333, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5}
+    newSize: {x: 1, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5}
+  m_EdgeRadius: 0

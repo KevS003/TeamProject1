@@ -19,7 +19,7 @@ public class WeaponFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.magnitude > 100.0f)
+        if (transform.position.magnitude > 15.0f)
             Destroy(gameObject);
         
     }

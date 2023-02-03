@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     public int score = 0;
     float firedRound;
     int cHealth;
+    public bool lvlOver=false;
     public int health {get{return cHealth;}}//in case health needs to be read
     public GameObject projectileRapid;
     public GameObject projectileRocket;
