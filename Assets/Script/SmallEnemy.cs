@@ -5,12 +5,9 @@ using UnityEngine;
 public class SmallEnemy : MonoBehaviour
 {
     //boundaries/zigzag//drops sword upgrade
-    public GameObject top;
-    public GameObject bottom;
-    public GameObject left;
-    public GameObject right;
     public float speed;
     int lnR = 1;
+    public int scoreWorth=50;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
     
@@ -38,10 +35,22 @@ public class SmallEnemy : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D contact)
     {
+        if(contact.collider.tag == "Projectile")
+        {
+            FindObjectOfType<PlayerMove>().Score(50);
+            Destroy(gameObject);
+        }
+        if(contact.collider.tag == "Player")
+        {
+            PlayerMove dmg = contact.gameObject.GetComponent<PlayerMove>();
+            dmg.HitPlayer(1);
+            Destroy(gameObject);
+        }
         if(contact.collider.tag == "Border")
         {
             lnR*=-1;
         }
+
     }
     
 }

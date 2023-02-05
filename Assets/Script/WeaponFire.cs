@@ -10,9 +10,10 @@ public class WeaponFire : MonoBehaviour
     //public SpriteRenderer ammoType;//gets rendered
     //public Sprite ammoChange;//stores data of shot sprite
     Rigidbody2D proRigidBod;
-    // Start is called before the first frame update
+    int score;
     void Awake()
     {
+        
         proRigidBod = GetComponent<Rigidbody2D>();
     }
 
@@ -23,26 +24,34 @@ public class WeaponFire : MonoBehaviour
             Destroy(gameObject);
         
     }
-    /*
-    public void AmmoType(int gun)
-    {
-        if(gun==1)
-        {
-            ammoChange = projectileRapid.GetComponent<Sprite>();
-        }
-        else if(gun ==2)
-        {
-            ammoChange = projectileRocket.GetComponent<Sprite>();
-        }
-        else if(gun==3)
-        {
-            ammoChange = projectileGrenade.GetComponent<Sprite>();
-        }
-        ammoType.sprite= ammoChange;
-    }*/
 
     public void Launch(float force)
     {
         proRigidBod.AddForce( new Vector2 (0.0f,1.0f) * force);//should only shoot up
     }
+    void OnCollisionEnter2D(Collision2D impact)
+    {
+        if(impact.collider.tag == "SmallE")
+        {
+            SmallEnemy smol = impact.collider.GetComponent<SmallEnemy>();
+            if(smol!= null)
+            {
+                Destroy(gameObject);
+                //scoreTrack.score += smol.scoreWorth;//gets value of enemy from enemy script
+                //Debug.Log(score.ToString());
+                //scoreTracking.Score(score);//brings value back to the player
+                Debug.Log("ENEMY HIT");
+            }
+        }
+        else if(impact.collider.tag =="BigE")
+        {
+
+        }
+        else if(impact.collider.tag == "ToughE")
+        {
+
+        }
+
+    }
+
 }

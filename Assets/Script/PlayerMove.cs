@@ -22,11 +22,11 @@ public class PlayerMove : MonoBehaviour
     float firedRound;
     int cHealth;
     public bool lvlOver=false;
-    public int health {get{return cHealth;}}//in case health needs to be read
+    //public int health {get{return cHealth;}}//in case health needs to be read
     public GameObject projectileRapid;
     public GameObject projectileRocket;
     public GameObject projectileGrenade;
-    public GameObject projectileLaunch;
+    //public GameObject projectileLaunch;
     public Text scoreTotal;
     public Text winL;
     public static int level;
@@ -69,8 +69,6 @@ public class PlayerMove : MonoBehaviour
                 if(weaponType==2)
                     bulletSpeed *= .60f;
                     speed = 7;
-                /*else if(weaponType==3)
-                    bulletSpeed *= .25f;*/
             }
             else
             {
@@ -83,11 +81,11 @@ public class PlayerMove : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Q))//Make as an emergency
         {
-            bomb();
+            Bomb();
         }
         if(Input.GetKey(KeyCode.Space))
         {
-            gun(weaponType);
+            Gun(weaponType);
         }
     }
     void FixedUpdate()
@@ -98,7 +96,7 @@ public class PlayerMove : MonoBehaviour
         rigidbody2d.MovePosition(position);
     }
     //RETURN VALUE FROM WEAPON SCRIPT FOR SCORE!!!!!
-    void gun(int weaponType)
+    void Gun(int weaponType)
     {
         
         if(weaponType == 1)
@@ -120,12 +118,24 @@ public class PlayerMove : MonoBehaviour
                 projectile.Launch(bulletSpeed);
         }
     }
-    void bomb()
+    void Bomb()
     {
                 firedRound = Time.time;
                 GameObject projectileObject = Instantiate(projectileGrenade, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
                 WeaponFire projectile = projectileObject.GetComponent<WeaponFire>();
                 projectile.Launch(bulletSpeed);  
             
+    }
+    public void HitPlayer(int dmgAmount)
+    {
+        cHealth-=dmgAmount;
+        Debug.Log(cHealth.ToString());
+        //play sound effect, make invinsible
+    }
+    public void Score(int amountPoint)
+    {
+        score+=amountPoint;
+        //update score UI here;
+        Debug.Log(score.ToString());
     }
 }
