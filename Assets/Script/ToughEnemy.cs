@@ -5,54 +5,68 @@ using UnityEngine;
 public class ToughEnemy : MonoBehaviour
 {
     public float speed;
-    int lnR = 1;
     int amountHit = 0;
+    bool shieldBreak= false;
+    bool brokenOff = false;
+    public int shieldHealth = 25;
     public int scoreWorth=50;//hi
+    public int health = 15;
+    public SpriteRenderer spriteRenderer;
+    public Sprite noShield;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
     
     // Start is called before the first frame update
     void Awake()
     {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
-        if(Random.value<0.5)
-            lnR = -1;
-        else
-            lnR = 1;
-
     }
-    //HAVE ENEMY MOVE LnR till bottom and then destroy object
+    
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 spot = rigidbody2dE.position;
-        spot.y = spot.y + Time.deltaTime * speed * -1;//direction turns it pos or negative   
-        spot.x = spot.x + Time.deltaTime * speed * lnR;
-        transform.position = new Vector2(spot.x,spot.y);
-        if (transform.position.magnitude > 20.0f)
-            Destroy(gameObject);
+        //put projectiles here
     }
     void OnCollisionEnter2D(Collision2D contact)
     {
         if(contact.collider.tag == "Projectile")
         {
-            if( amountHit==0)
+            if(shieldBreak == false)
             {
-                FindObjectOfType<PlayerMove>().Score(50);
-                amountHit++;
+            
+                if(shieldHealth>0)
+                {
+                    shieldHealth--;
+                }
+                else if(shieldHealth==0)
+                {
+                    //change sprite to broken shield.
+                    spriteRenderer.sprite = noShield;
+                    shieldBreak = true;
+                }
+                        
             }
-            Destroy(gameObject);
+            else
+            {
+                //count down health on hits
+                if(health>0)
+                    health--;
+                else
+                {     
+                    FindObjectOfType<PlayerMove>().Score(150);
+                    Destroy(gameObject);
+                }
+            }
+                
+            
         }
         if(contact.collider.tag == "Player")
         {
             PlayerMove dmg = contact.gameObject.GetComponent<PlayerMove>();
             dmg.HitPlayer(1);
-            Destroy(gameObject);
-        }
-        if(contact.collider.tag == "Border")
-        {
-            lnR*=-1;
+            //Destroy(gameObject);
         }
 
     }

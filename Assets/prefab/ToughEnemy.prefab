@@ -14,9 +14,12 @@ GameObject:
   - component: {fileID: 411577682}
   - component: {fileID: 411577683}
   - component: {fileID: 411577685}
+  - component: {fileID: 202090210204520104}
+  - component: {fileID: 8964305838302619343}
+  - component: {fileID: 3478624956619268073}
   m_Layer: 0
   m_Name: ToughEnemy
-  m_TagString: Untagged
+  m_TagString: ToughE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +162,7 @@ MonoBehaviour:
   radius: 0.5
   height: 2
   canMove: 1
-  maxSpeed: 2
+  maxSpeed: 5
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
     serializedVersion: 2
@@ -232,3 +235,58 @@ MonoBehaviour:
   - {fileID: 5867856435649882179, guid: 92c9a359f58efaf488ffe2718100c25c, type: 3}
   - {fileID: 7331560027675445306, guid: 428aac3a61c7b034ea64c5f1ec891e81, type: 3}
   delay: 2
+--- !u!114 &202090210204520104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9017115872697858523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40789562c18bcb54da5718f669876f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  shieldHealth: 25
+  scoreWorth: 50
+  health: 15
+  spriteRenderer: {fileID: 0}
+  noShield: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
+--- !u!58 &8964305838302619343
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9017115872697858523}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 021490fb7d1c8364c93b3d167a667333, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &3478624956619268073
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9017115872697858523}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: 021490fb7d1c8364c93b3d167a667333, type: 2}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

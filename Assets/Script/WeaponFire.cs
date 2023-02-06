@@ -49,7 +49,8 @@ public class WeaponFire : MonoBehaviour
         }
         else if(impact.collider.tag == "ToughE")
         {
-
+            Destroy(gameObject);
+            
         }
 
     }
