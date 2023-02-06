@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Sprites;
+using TMPro;
 
 
 public class PlayerMove : MonoBehaviour
@@ -18,18 +19,22 @@ public class PlayerMove : MonoBehaviour
     public float originalBspeed = 5000.0f;
     public float shotsPerS = 20.0f;
     static public float lvlTimer = 30.0f;
-    public int score = 0;
+    static public int score = 0;
     float firedRound;
     int cHealth;
     public bool lvlOver=false;
+    static bool restart = false;
+    bool controlAct = true;
     //public int health {get{return cHealth;}}//in case health needs to be read
     public GameObject projectileRapid;
     public GameObject projectileRocket;
     public GameObject projectileGrenade;
     //public GameObject projectileLaunch;
-    public Text scoreTotal;
-    public Text winL;
-    public static int level;
+    public TextMeshProUGUI scoreTotal;
+    public TextMeshProUGUI winL;
+    public TextMeshProUGUI lives;
+    public TextMeshProUGUI timer;
+    public static int level = 1;
     Rigidbody2D rigidbody2d;
     float hori;
     float verti;
@@ -40,52 +45,121 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        controlAct = true;
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
         cHealth = maxHealth;
         originalBspeed = bulletSpeed;
         originalP = speed;
+        winL.enabled = false;
+        lives.text = "Lives: " + cHealth.ToString();
+        if(level == 1)
+            scoreTotal.text = score.ToString();
+        else
+            scoreTotal.enabled = false;
+        timer.text = "Timer:\n  " + lvlTimer.ToString();
+        lvlOver = false;
+        if(restart == true)
+        {
+            lvlTimer = 30.0f;
+            restart=false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        verti = Input.GetAxis("Vertical");
-        hori = Input.GetAxis("Horizontal");
-        Vector2 move = new Vector2(hori, verti);
-        if(lvlTimer >= 0.0f)
+        if(lvlTimer>=0 && lvlOver == false && level == 1)
         {
-            lvlTimer-=Time.deltaTime; 
+            lvlTimer-= Time.deltaTime;
         }
         else
         {
-            //send to next level if alive.
+            if(level==1)
+            {
+                lvlOver=true;
+                controlAct=false;
+                //winLtext and start a coroutine to wait for next level.
+            }
         }
-        if(Input.GetKeyDown(KeyCode.R))//bomb to q
+        if(controlAct == true)
         {
-            if(weaponType<2)
+            verti = Input.GetAxis("Vertical");
+            hori = Input.GetAxis("Horizontal");
+            Vector2 move = new Vector2(hori, verti);
+        
+            if(lvlTimer >= 0.0f)
             {
-                weaponType++;
-                if(weaponType==2)
-                    bulletSpeed *= .60f;
-                    speed = 7;
+                lvlTimer-=Time.deltaTime; 
+                timer.text = "Timer:\n  " + lvlTimer.ToString("f0");
             }
-            else
+            /*else
             {
-                speed = originalP;
-                weaponType = 1;
-                bulletSpeed = originalBspeed;
-            }
+                //send to next level if alive.
+            }*/
+            if(Input.GetKeyDown(KeyCode.R))//bomb to q
+            {
+                if(weaponType<2)
+                {
+                    weaponType++;
+                    if(weaponType==2)
+                        bulletSpeed *= .60f;
+                        speed = 7;
+                }
+                else
+                {
+                    speed = originalP;
+                    weaponType = 1;
+                    bulletSpeed = originalBspeed;
+                }
             
             
+            }
+            if(Input.GetKeyDown(KeyCode.Q))//Make as an emergency
+            {
+                Bomb();
+            }
+            if(Input.GetKey(KeyCode.Space))
+            {
+                Gun(weaponType);
+            }
         }
-        if(Input.GetKeyDown(KeyCode.Q))//Make as an emergency
+
+        if(lvlOver == true)
         {
-            Bomb();
-        }
-        if(Input.GetKey(KeyCode.Space))
-        {
-            Gun(weaponType);
+            //press R to restart current 
+            if(lvlTimer>0)
+            {
+                winL.enabled = true;
+                if(Input.GetKeyDown(KeyCode.R))
+                {
+                    if(level == 1)
+                        score = 0;
+                    Restart();
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    score = 0;
+                    restart=true;
+                    SceneManager.LoadScene("MenuScreen");
+                }
+            }
+            if(lvlTimer<=0)
+            {
+                winL.text = "You made it to the village press\nKey: N for next level or ESC for main menu";
+                winL.enabled = true;
+                if(Input.GetKeyDown(KeyCode.N))
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
+                if(Input.GetKeyDown(KeyCode.Escape))
+                {
+                    score = 0;
+                    restart=true;
+                    SceneManager.LoadScene("MenuScreen");
+                }
+                //load next level
+            }
         }
     }
     void FixedUpdate()
@@ -128,14 +202,44 @@ public class PlayerMove : MonoBehaviour
     }
     public void HitPlayer(int dmgAmount)
     {
-        cHealth-=dmgAmount;
-        Debug.Log(cHealth.ToString());
+        if(lvlOver==false)
+        {
+            cHealth-=dmgAmount;
+            Debug.Log(cHealth.ToString());
+            lives.text = "Lives: " + cHealth.ToString();
+            if(cHealth == 0)
+            {
+                controlAct = false;
+                lvlOver = true;
+                //set sprite to dead sprite here//dead sound effect here
+                //LoseCond();
+            }
+        }
         //play sound effect, make invinsible
     }
     public void Score(int amountPoint)
     {
         score+=amountPoint;
         //update score UI here;
+        scoreTotal.text = score.ToString();
         Debug.Log(score.ToString());
     }
+    void Restart()
+    {
+        restart = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    /*void LoseCond()
+    {
+            winL.enabled = true;
+            if(Input.GetKeyDown(KeyCode.R))
+                {
+                    Restart();
+                }
+                else if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    SceneManager.LoadScene("MenuScreen");
+                }
+    }*/
+    //pause menu through function that stops the spawner temporarily and player movement
 }

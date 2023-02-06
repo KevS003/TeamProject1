@@ -8,7 +8,7 @@ public class WeaponFire : MonoBehaviour
     //public GameObject projectileRocket;
     //public GameObject projectileGrenade;
     //public SpriteRenderer ammoType;//gets rendered
-    //public Sprite ammoChange;//stores data of shot sprite
+    //public Sprite ammoChange;//stores data of shot sprites
     Rigidbody2D proRigidBod;
     int score;
     void Awake()

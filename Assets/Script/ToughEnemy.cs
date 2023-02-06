@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SmallEnemy : MonoBehaviour
+public class ToughEnemy : MonoBehaviour
 {
-    //boundaries/zigzag//drops sword upgrade
     public float speed;
     int lnR = 1;
     int amountHit = 0;
