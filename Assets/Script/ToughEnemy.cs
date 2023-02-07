@@ -13,7 +13,7 @@ public class ToughEnemy : MonoBehaviour
     public int scoreWorth=50;
     public int health = 15;
     public int shotsPerS = 5;
-    public float bulletSpeedE= 1500.0f;
+    public float bulletSpeedE= 750.0f;
     public float intervalE = .7f;
     float firedRound;
     public SpriteRenderer spriteRenderer;

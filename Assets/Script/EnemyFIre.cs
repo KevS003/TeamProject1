@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnemyFIre : MonoBehaviour
 {
+    float angle;
     Rigidbody2D proRigidBod;
     void Awake()
     {
+        angle=Random.Range(-10.0f,-1.0f);
         
         proRigidBod = GetComponent<Rigidbody2D>();
     }
@@ -22,6 +24,10 @@ public class EnemyFIre : MonoBehaviour
     public void Launch(float force)
     {
         proRigidBod.AddForce( new Vector2 (0.0f,-1.0f) * force);
+    }
+    public void LaunchB(float force)
+    {
+        proRigidBod.AddForce(new Vector2 (0.0f,angle) *force);
     }
     void OnCollisionEnter2D(Collision2D impact)
     {

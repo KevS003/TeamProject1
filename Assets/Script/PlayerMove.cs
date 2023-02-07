@@ -19,12 +19,13 @@ public class PlayerMove : MonoBehaviour
     public float originalBspeed = 5000.0f;
     public float shotsPerS = 20.0f;
     static public float lvlTimer = 30.0f;
+    static public bool mainMenuR=false;
     public float usablTime;
     static public int score = 0;
     float firedRound;
     int cHealth;
     public bool lvlOver=false;
-    static bool restart = false;
+    bool restart = false;
     bool controlAct = true;
     public int bombCount = 3;
     public GameObject projectileRapid;
@@ -65,22 +66,42 @@ public class PlayerMove : MonoBehaviour
             scoreTotal.text = score.ToString();
             timer.text = "KILL\nTHE\nBOSS";//could be replaced with boss health
         }
+        if(mainMenuR==true)
+            level = 1;
         lvlOver = false;
-        if(restart == true)
-        {
+        //if(restart == true)
+        //{
             lvlTimer = 30.0f;
+            usablTime=lvlTimer;
             restart=false;
-        }
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(lvlTimer>=0 && lvlOver == false && level == 1)//if the timer gets to 0
+        //TIMER
+        if(lvlTimer>=0 && cHealth > 0 )//if the timer gets to 0 //lvlTimer>=0 && lvlOver == false && level == 1
         {
             lvlTimer-= Time.deltaTime;
-            usablTime=lvlTimer;
+            usablTime=lvlTimer;  
+            timer.text = "Timer:\n  " + lvlTimer.ToString("f0");     
         }
+        else
+        {
+            if(cHealth>0)
+            {
+                lvlOver=true;
+                controlAct=false;
+                level++;
+                //winLtext and start a coroutine to wait for next level.
+            }
+        }
+        
+        
+        
+        
+        /*
         else
         {
             if(level==1)
@@ -90,22 +111,13 @@ public class PlayerMove : MonoBehaviour
                 level++;
                 //winLtext and start a coroutine to wait for next level.
             }
-        }
+        }*/
+        //CONTROLLER INPUTS
         if(controlAct == true)
         {
             verti = Input.GetAxis("Vertical");
             hori = Input.GetAxis("Horizontal");
             Vector2 move = new Vector2(hori, verti);
-        
-            if(lvlTimer >= 0.0f)
-            {
-                lvlTimer-=Time.deltaTime; 
-                timer.text = "Timer:\n  " + lvlTimer.ToString("f0");
-            }
-            /*else
-            {
-                //send to next level if alive.
-            }*/
             if(Input.GetKeyDown(KeyCode.R))//bomb to q
             {
                 if(weaponType<2)
@@ -139,6 +151,7 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        //ending STATES
         if(lvlOver == true)
         {
             //press R to restart current 
@@ -155,21 +168,23 @@ public class PlayerMove : MonoBehaviour
                 {
                     score = 0;
                     restart=true;
+                    level = 1;
                     SceneManager.LoadScene("MenuScreen");
                 }
             }
-            if(lvlTimer<=0)
+            else if(lvlTimer<=0)
             {
                 winL.text = "You made it to the village press\nKey: N for next level or ESC for main menu";
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.N))
                 {
+                    level++;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
-                if(Input.GetKeyDown(KeyCode.Escape))
+                if(Input.GetKeyDown(KeyCode.Escape))//THIS IS THE PROBLEM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 {
                     score = 0;
-                    restart=true;
+                    mainMenuR = true;
                     SceneManager.LoadScene("MenuScreen");
                 }
                 //load next level
@@ -206,6 +221,8 @@ public class PlayerMove : MonoBehaviour
                 projectile.Launch(bulletSpeed);
         }
     }
+
+    //Whipes screen
     void Bomb()
     {
         
@@ -220,6 +237,8 @@ public class PlayerMove : MonoBehaviour
                 projectile.Launch(bulletSpeed); */ 
             
     }
+
+    //Damages player
     public void HitPlayer(int dmgAmount)
     {
         if(lvlOver==false)
@@ -237,6 +256,8 @@ public class PlayerMove : MonoBehaviour
         }
         //play sound effect, make invinsible
     }
+
+    //calcs score
     public void Score(int amountPoint)
     {
         score+=amountPoint;
@@ -244,6 +265,8 @@ public class PlayerMove : MonoBehaviour
         scoreTotal.text = score.ToString();
         Debug.Log(score.ToString());
     }
+
+    //restarts game
     void Restart()
     {
         restart = true;
