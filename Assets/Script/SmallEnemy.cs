@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Sprites;
+using TMPro;
 
 public class SmallEnemy : MonoBehaviour
 {
@@ -11,12 +14,17 @@ public class SmallEnemy : MonoBehaviour
     public int scoreWorth=50;//hi
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
+    private GameObject player;
+    PlayerMove playerScript;
     
     // Start is called before the first frame update
     void Awake()
     {
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerMove>();
+        
         if(Random.value<0.5)
             lnR = -1;
         else
@@ -34,6 +42,18 @@ public class SmallEnemy : MonoBehaviour
         if (transform.position.magnitude > 20.0f)
             Destroy(gameObject);
     }
+
+   void Update()
+    {
+        int bombAmount = playerScript.bombCount;
+        if(Input.GetKey(KeyCode.Q)&& bombAmount>0)
+        {
+            Destruct();
+            //int bombCounter = FindObjectofType<PlayerMove>().bombCount;
+            
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D contact)
     {
         if(contact.collider.tag == "Projectile")
@@ -55,6 +75,12 @@ public class SmallEnemy : MonoBehaviour
         {
             lnR*=-1;
         }
+    }
+    public void Destruct()
+    {
+        FindObjectOfType<PlayerMove>().Score(50);
+        Destroy(gameObject);
+    
 
     }
     

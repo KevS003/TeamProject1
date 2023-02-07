@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 411577685}
   - component: {fileID: 202090210204520104}
   - component: {fileID: 8964305838302619343}
-  - component: {fileID: 3478624956619268073}
+  - component: {fileID: 8427609964806137014}
   m_Layer: 0
   m_Name: ToughEnemy
   m_TagString: ToughE
@@ -253,6 +253,7 @@ MonoBehaviour:
   health: 15
   spriteRenderer: {fileID: 0}
   noShield: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
+  shot: {fileID: 5164341710083342371, guid: 2bb4d736bdfa7e144a374c646845ff3b, type: 3}
 --- !u!58 &8964305838302619343
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!50 &3478624956619268073
+--- !u!50 &8427609964806137014
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -281,7 +282,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

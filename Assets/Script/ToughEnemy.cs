@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Sprites;
+using TMPro;
 
 public class ToughEnemy : MonoBehaviour
 {
     public float speed;
-    int amountHit = 0;
     bool shieldBreak= false;
-    bool brokenOff = false;
     public int shieldHealth = 25;
-    public int scoreWorth=50;//hi
+    public int scoreWorth=50;
     public int health = 15;
+    public int shotsPerS = 5;
+    public float bulletSpeedE= 1500.0f;
+    public float intervalE = .7f;
+    float firedRound;
     public SpriteRenderer spriteRenderer;
     public Sprite noShield;
+    private GameObject player;
+    public GameObject shot;
+    PlayerMove playerScript;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
     
@@ -22,12 +30,31 @@ public class ToughEnemy : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player");
+        playerScript = player.GetComponent<PlayerMove>();
+        StartCoroutine(fire(intervalE));
     }
     
     // Update is called once per frame
     void FixedUpdate()
     {
         //put projectiles here
+    }
+    void Update()
+    {
+        int bombAmount = playerScript.bombCount;
+        if(Input.GetKey(KeyCode.Q)&& bombAmount>0)
+        {
+            Destruct();
+            //int bombCounter = FindObjectofType<PlayerMove>().bombCount;
+            
+        }
+        float timer = playerScript.usablTime;
+        if(timer<=0)
+        {
+            Destroy(gameObject);
+        }
+
     }
     void OnCollisionEnter2D(Collision2D contact)
     {
@@ -66,9 +93,23 @@ public class ToughEnemy : MonoBehaviour
         {
             PlayerMove dmg = contact.gameObject.GetComponent<PlayerMove>();
             dmg.HitPlayer(1);
-            //Destroy(gameObject);
         }
 
+    }
+    public void Destruct()
+    {
+        FindObjectOfType<PlayerMove>().Score(150);
+        Destroy(gameObject);
+    }
+    private IEnumerator fire(float interval)
+    {
+
+        yield return new WaitForSeconds(interval);
+        firedRound = Time.time;
+        GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down * 0.5f, Quaternion.identity);
+        EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();
+        projectile.Launch(bulletSpeedE);
+        StartCoroutine(fire(interval));
     }
     
 }

@@ -7,7 +7,7 @@ using UnityEngine.Sprites;
 using TMPro;
 
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMoveB : MonoBehaviour
 {
     //health system adds health based on score
     Animator animator;
@@ -56,15 +56,10 @@ public class PlayerMove : MonoBehaviour
         winL.enabled = false;
         lives.text = "Lives: " + cHealth.ToString();
         if(level == 1)
-        {
             scoreTotal.text = score.ToString();
-            timer.text = "Timer:\n  " + lvlTimer.ToString();
-        }
         else
-        {
-            scoreTotal.text = score.ToString();
-            timer.text = "KILL\nTHE\nBOSS";//could be replaced with boss health
-        }
+            scoreTotal.enabled = false;
+        timer.text = "Timer:\n  " + lvlTimer.ToString();
         lvlOver = false;
         if(restart == true)
         {
@@ -76,10 +71,11 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(lvlTimer>=0 && lvlOver == false && level == 1)//if the timer gets to 0
+        if(lvlTimer>=0 && lvlOver == false && level == 1)
         {
             lvlTimer-= Time.deltaTime;
             usablTime=lvlTimer;
+
         }
         else
         {
@@ -87,7 +83,6 @@ public class PlayerMove : MonoBehaviour
             {
                 lvlOver=true;
                 controlAct=false;
-                level++;
                 //winLtext and start a coroutine to wait for next level.
             }
         }

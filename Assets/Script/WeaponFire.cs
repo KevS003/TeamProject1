@@ -33,19 +33,12 @@ public class WeaponFire : MonoBehaviour
     {
         if(impact.collider.tag == "SmallE")
         {
-            SmallEnemy smol = impact.collider.GetComponent<SmallEnemy>();
-            if(smol!= null)
-            {
                 Destroy(gameObject);
-                //scoreTrack.score += smol.scoreWorth;//gets value of enemy from enemy script
-                //Debug.Log(score.ToString());
-                //scoreTracking.Score(score);//brings value back to the player
                 Debug.Log("ENEMY HIT");
-            }
         }
         else if(impact.collider.tag =="BigE")
         {
-
+            Destroy(gameObject);
         }
         else if(impact.collider.tag == "ToughE")
         {
