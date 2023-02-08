@@ -25,8 +25,9 @@ public class PlayerMove : MonoBehaviour
     float firedRound;
     int cHealth;
     public bool lvlOver=false;
-    bool restart = false;
+    //bool restart = false;
     bool controlAct = true;
+    static bool nextLevel = false;
     public int bombCount = 3;
     public GameObject projectileRapid;
     public GameObject projectileRocket;//Actually lazer now
@@ -64,16 +65,19 @@ public class PlayerMove : MonoBehaviour
         else
         {
             scoreTotal.text = score.ToString();
-            timer.text = "KILL\nTHE\nBOSS";//could be replaced with boss health
+            timer.text = "KILL THE\nBOSS";//could be replaced with boss health
         }
         if(mainMenuR==true)
+        {
             level = 1;
+            mainMenuR = false;
+        }
         lvlOver = false;
         //if(restart == true)
         //{
             lvlTimer = 30.0f;
             usablTime=lvlTimer;
-            restart=false;
+            //restart=false;
         //}
     }
 
@@ -81,13 +85,13 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         //TIMER
-        if(lvlTimer>=0 && cHealth > 0 )//if the timer gets to 0 //lvlTimer>=0 && lvlOver == false && level == 1
+        if(lvlTimer>0 && cHealth > 0 && nextLevel == false)//if the timer gets to 0 //lvlTimer>=0 && lvlOver == false && level == 1
         {
             lvlTimer-= Time.deltaTime;
             usablTime=lvlTimer;  
             timer.text = "Timer:\n  " + lvlTimer.ToString("f0");     
         }
-        else
+        else if(nextLevel == false)
         {
             if(cHealth>0)
             {
@@ -167,7 +171,7 @@ public class PlayerMove : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     score = 0;
-                    restart=true;
+                    //restart=true;
                     level = 1;
                     SceneManager.LoadScene("MenuScreen");
                 }
@@ -179,6 +183,7 @@ public class PlayerMove : MonoBehaviour
                 if(Input.GetKeyDown(KeyCode.N))
                 {
                     level++;
+                    nextLevel = true;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
                 if(Input.GetKeyDown(KeyCode.Escape))//THIS IS THE PROBLEM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -269,7 +274,7 @@ public class PlayerMove : MonoBehaviour
     //restarts game
     void Restart()
     {
-        restart = true;
+        //restart = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     /*void LoseCond()

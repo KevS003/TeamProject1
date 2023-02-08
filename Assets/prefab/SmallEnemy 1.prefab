@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 407151373848148420}
   - component: {fileID: 2681924053498731880}
   - component: {fileID: -2648759591624923591}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SmallEnemy 1
   m_TagString: SmallE
   m_Icon: {fileID: 0}
@@ -120,11 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e117b65675a24a0498fde1dfad5e2c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top: {fileID: 0}
-  bottom: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
   speed: 5
+  scoreWorth: 50
 --- !u!61 &-2648759591624923591
 BoxCollider2D:
   m_ObjectHideFlags: 0

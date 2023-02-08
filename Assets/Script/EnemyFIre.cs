@@ -8,7 +8,7 @@ public class EnemyFIre : MonoBehaviour
     Rigidbody2D proRigidBod;
     void Awake()
     {
-        angle=Random.Range(-10.0f,-1.0f);
+        angle=Random.Range(-10.0f,10.0f);
         
         proRigidBod = GetComponent<Rigidbody2D>();
     }
@@ -27,7 +27,7 @@ public class EnemyFIre : MonoBehaviour
     }
     public void LaunchB(float force)
     {
-        proRigidBod.AddForce(new Vector2 (0.0f,angle) *force);
+        proRigidBod.AddForce(new Vector2 (angle,-1.0f) *force);
     }
     void OnCollisionEnter2D(Collision2D impact)
     {
