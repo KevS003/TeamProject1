@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyFIre : MonoBehaviour
 {
     float angle;
+    float direction;
     Rigidbody2D proRigidBod;
     void Awake()
     {
-        angle=Random.Range(-10.0f,10.0f);
+        angle=Random.Range(-1.0f,1.0f);
+        direction=Random.Range(-1.0f,1.0f);
         
         proRigidBod = GetComponent<Rigidbody2D>();
     }
@@ -28,6 +30,21 @@ public class EnemyFIre : MonoBehaviour
     public void LaunchB(float force)
     {
         proRigidBod.AddForce(new Vector2 (angle,-1.0f) *force);
+    }
+    public void LaunchBoss(float force, int stage)
+    {
+        if(stage == 0 )
+        {
+            proRigidBod.AddForce( new Vector2 (0.0f,-1.0f) * force);
+        }
+        else if(stage == 1)
+        {
+            proRigidBod.AddForce(new Vector2 (angle,-1.0f) *force);
+        }
+        else if(stage == 2)
+        {
+            proRigidBod.AddForce(new Vector2(angle,direction)* force);
+        }
     }
     void OnCollisionEnter2D(Collision2D impact)
     {

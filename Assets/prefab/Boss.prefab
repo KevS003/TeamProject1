@@ -287,10 +287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  shieldHealth: 25
   scoreWorth: 50
-  health: 15
-  shotsPerS: 5
+  spawnHealth: 0
+  health: 1000
   bulletSpeedE: 750
   intervalE: 0.7
   spriteRenderer: {fileID: 0}

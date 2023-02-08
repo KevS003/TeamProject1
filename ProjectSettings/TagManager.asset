@@ -9,6 +9,8 @@ TagManager:
   - SmallE
   - ToughE
   - BigE
+  - PlayerInv
+  - BossE
   layers:
   - Default
   - TransparentFX

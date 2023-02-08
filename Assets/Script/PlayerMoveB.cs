@@ -20,12 +20,15 @@ public class PlayerMoveB : MonoBehaviour
     public float shotsPerS = 20.0f;
     static public float lvlTimer = 30.0f;
     public float usablTime;
+    public float timeInvincible = 2.0f;
+    float invincibleTimer;
     static public int score = 0;
-    float firedRound;
+    float firedRound;  
     int cHealth;
     public bool lvlOver=false;
     static bool restart = false;
     bool controlAct = true;
+    bool invincible;
     public int bombCount = 3;
     public GameObject projectileRapid;
     public GameObject projectileRocket;//Actually lazer now
@@ -91,6 +94,16 @@ public class PlayerMoveB : MonoBehaviour
             verti = Input.GetAxis("Vertical");
             hori = Input.GetAxis("Horizontal");
             Vector2 move = new Vector2(hori, verti);
+            
+            if (invincible)
+            {
+                invincibleTimer -= Time.deltaTime;
+                if (invincibleTimer < 0)
+                    invincible = false;
+
+            }
+
+            
         
             if(lvlTimer >= 0.0f)
             {
@@ -219,14 +232,23 @@ public class PlayerMoveB : MonoBehaviour
     {
         if(lvlOver==false)
         {
-            cHealth-=dmgAmount;
-            Debug.Log(cHealth.ToString());
-            lives.text = "Lives: " + cHealth.ToString();
+            if(invincible == false)
+            {
+                cHealth-=dmgAmount;
+                Debug.Log(cHealth.ToString());
+                lives.text = "Lives: " + cHealth.ToString();
+                invincible = true;
+                invincibleTimer = timeInvincible;
+                //This is where you set an animation to show the player got hit. and add the sound 
+                //animator.SetTrigger("Hit");
+                //GameObject projectileObject = Instantiate(damage, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+                //PlaySound(dmg);
+            }
             if(cHealth == 0)
             {
                 controlAct = false;
                 lvlOver = true;
-                //set sprite to dead sprite here//dead sound effect here
+                //set sprite to dead sprite here//dead sound effect here or losing sound effect
                 //LoseCond();
             }
         }

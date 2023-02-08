@@ -45,6 +45,10 @@ public class WeaponFire : MonoBehaviour
             Destroy(gameObject);
             
         }
+        else if(impact.collider.tag == "BossE")
+        {
+            Destroy(gameObject);
+        }
 
     }
 

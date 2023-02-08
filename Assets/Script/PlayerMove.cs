@@ -11,7 +11,6 @@ public class PlayerMove : MonoBehaviour
 {
     //health system adds health based on score
     Animator animator;
-    static public int lvlNum= 1;
     public int maxHealth= 3;//when you lose a life reset to power 1
     public int alreadyMult = 0;
     public float speed = 15f;
@@ -21,17 +20,24 @@ public class PlayerMove : MonoBehaviour
     static public float lvlTimer = 30.0f;
     static public bool mainMenuR=false;
     public float usablTime;
+    public float timeInvincible = 2.0f;
+    float invincibleTimer;
     static public int score = 0;
     float firedRound;
     int cHealth;
     public bool lvlOver=false;
+    bool gameOver = false;
     //bool restart = false;
     bool controlAct = true;
+    bool invincible;
     static bool nextLevel = false;
-    public int bombCount = 3;
+    static int bombStore=3;
+    public int bombCount;
+    private bool bossDed=false;
     public GameObject projectileRapid;
     public GameObject projectileRocket;//Actually lazer now
     public GameObject projectileGrenade;
+    private GameObject bossHere;
     //public GameObject projectileLaunch;
     public TextMeshProUGUI scoreTotal;
     public TextMeshProUGUI winL;
@@ -40,6 +46,7 @@ public class PlayerMove : MonoBehaviour
     public TextMeshProUGUI bombT;
     public static int level = 1;
     Rigidbody2D rigidbody2d;
+    BossEnemy bossScript;
     float hori;
     float verti;
     int weaponType = 1;
@@ -57,6 +64,8 @@ public class PlayerMove : MonoBehaviour
         originalP = speed;
         winL.enabled = false;
         lives.text = "Lives: " + cHealth.ToString();
+        bombCount = bombStore;
+        bombT.text = "= " + bombCount.ToString();
         if(level == 1)
         {
             scoreTotal.text = score.ToString();
@@ -64,8 +73,10 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            bossHere = GameObject.FindWithTag("BossE");
+            bossScript = bossHere.GetComponent<BossEnemy>();
             scoreTotal.text = score.ToString();
-            timer.text = "KILL THE\nBOSS";//could be replaced with boss health
+            timer.enabled = false;//could be replaced with boss health
         }
         if(mainMenuR==true)
         {
@@ -97,39 +108,45 @@ public class PlayerMove : MonoBehaviour
             {
                 lvlOver=true;
                 controlAct=false;
-                level++;
-                //winLtext and start a coroutine to wait for next level.
+                //level++;
             }
         }
-        
-        
-        
-        
-        /*
-        else
+        if(nextLevel == true)
         {
-            if(level==1)
+            if(bossScript.health <=0 && bossDed == false)
             {
-                lvlOver=true;
-                controlAct=false;
-                level++;
-                //winLtext and start a coroutine to wait for next level.
+                bossDed = true;
+                GameOver();
+                
             }
-        }*/
+        }
         //CONTROLLER INPUTS
         if(controlAct == true)
         {
             verti = Input.GetAxis("Vertical");
             hori = Input.GetAxis("Horizontal");
             Vector2 move = new Vector2(hori, verti);
+            if (invincible)
+            {
+                invincibleTimer -= Time.deltaTime;
+                gameObject.tag = "PlayerInv";
+
+                if (invincibleTimer < 0)
+                {
+                    invincible = false;
+                    gameObject.tag = "Player";
+                    
+                }
+
+            }
             if(Input.GetKeyDown(KeyCode.R))//bomb to q
             {
-                if(weaponType<2)
+                if(weaponType<2)//change sprite here to match weapon being used, match sound depending on weapon being used
                 {
                     weaponType++;
                     if(weaponType==2)
                         bulletSpeed *= .60f;
-                        speed = 7;
+                        speed = 3;
                 }
                 else
                 {
@@ -184,6 +201,7 @@ public class PlayerMove : MonoBehaviour
                 {
                     level++;
                     nextLevel = true;
+                    bombStore=bombCount;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
                 if(Input.GetKeyDown(KeyCode.Escape))//THIS IS THE PROBLEM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -195,6 +213,22 @@ public class PlayerMove : MonoBehaviour
                 //load next level
             }
         }
+        if(gameOver == true)
+        {
+                winL.text = "You saved the Village! ESC for main menu";
+                winL.enabled = true;
+                if(Input.GetKeyDown(KeyCode.Escape))//THIS IS THE PROBLEM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                {
+                    score = 0;
+                    mainMenuR = true;
+                    gameOver = false;
+                    nextLevel = false;
+                    level =1;
+                    bombStore = 3;
+                    score =0;
+                    SceneManager.LoadScene("MenuScreen");
+                }
+        }
     }
     void FixedUpdate()
     {
@@ -204,7 +238,7 @@ public class PlayerMove : MonoBehaviour
         rigidbody2d.MovePosition(position);
     }
     //RETURN VALUE FROM WEAPON SCRIPT FOR SCORE!!!!!
-    void Gun(int weaponType)
+    void Gun(int weaponType)//place weapon animations here 
     {
         
         if(weaponType == 1)
@@ -220,10 +254,14 @@ public class PlayerMove : MonoBehaviour
         }
         else if(weaponType == 2)//beam
         {
+            shotsPerS= 60;
+            if(Time.time - firedRound >1/shotsPerS)
+            {
                 firedRound = Time.time;
                 GameObject projectileObject = Instantiate(projectileRocket, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
                 WeaponFire projectile = projectileObject.GetComponent<WeaponFire>();
                 projectile.Launch(bulletSpeed);
+            }
         }
     }
 
@@ -248,9 +286,18 @@ public class PlayerMove : MonoBehaviour
     {
         if(lvlOver==false)
         {
-            cHealth-=dmgAmount;
-            Debug.Log(cHealth.ToString());
-            lives.text = "Lives: " + cHealth.ToString();
+            if(invincible == false)
+            {
+                cHealth-=dmgAmount;
+                Debug.Log(cHealth.ToString());
+                lives.text = "Lives: " + cHealth.ToString();
+                invincible = true;
+                invincibleTimer = timeInvincible;
+                //This is where you set an animation to show the player got hit. and add the sound 
+                //animator.SetTrigger("Hit");
+                //GameObject projectileObject = Instantiate(damage, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+                //PlaySound(dmg);
+            }
             if(cHealth == 0)
             {
                 controlAct = false;
@@ -275,7 +322,13 @@ public class PlayerMove : MonoBehaviour
     void Restart()
     {
         //restart = true;
+        bombCount = bombStore;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    void GameOver()
+    {
+         controlAct = false;
+         gameOver = true;
     }
     /*void LoseCond()
     {

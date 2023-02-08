@@ -1,88 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Sprites;
+using TMPro;
 
 public class BossEnemy : MonoBehaviour
 {
     public float speed;
-    bool shieldBreak= false;
-    public int shieldHealth = 25;
     public int scoreWorth=50;
-    public int health = 15;
-    public int shotsPerS = 5;
+    public int spawnHealth;
+    public int health = 1000;
     public float bulletSpeedE= 750.0f;
     public float intervalE = .7f;
-    float firedRound;
+    public int bombDmg = 150;
+    float angle;
+    float direction;
+    //float firedRound;
+    int phase=0;
     public SpriteRenderer spriteRenderer;
     public Sprite noShield;
     private GameObject player;
     public GameObject shot;
+    public TextMeshProUGUI bossHealth;
     PlayerMove playerScript;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
     
-    // Start is called before the first frame update
     void Awake()
     {
+        spawnHealth = health;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerMove>();
-        StartCoroutine(fire(intervalE));
+        health = spawnHealth;
+        bossHealth.enabled =true;
+        StartCoroutine(fire(intervalE, 0));//starts at stage 0
     }
     
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        //put projectiles here
-    }
     void Update()
     {
+        bossHealth.text = "Boss Health:\n" + health.ToString("f0") + "/750";
         int bombAmount = playerScript.bombCount;
-        if(Input.GetKey(KeyCode.Q)&& bombAmount>0)
+        if(Input.GetKeyDown(KeyCode.Q)&& bombAmount>0)
         {
-            Destruct();
-            //int bombCounter = FindObjectofType<PlayerMove>().bombCount;
-            
+            //blink red
+            health-=bombDmg; 
+            if(health<0)
+            {
+                Destruct();
+            }     
+            //dmg animation with some effects and Sound 
         }
-        float timer = playerScript.usablTime;
-        if(timer<=0)
-        {
-            Destroy(gameObject);
-        }
+        if(health <= 500 && health >200 )
+            {
+                phase = 1;
+                bulletSpeedE= 150;
+                intervalE= .4f;
+            }
+        else if(health <= 200)
+            {
+                phase = 2;
+                bulletSpeedE = 100;
+                intervalE = .2f;
+            }
 
     }
     void OnCollisionEnter2D(Collision2D contact)
     {
         if(contact.collider.tag == "Projectile")
         {
-            if(shieldBreak == false)
-            {
             
-                if(shieldHealth>0)
-                {
-                    shieldHealth--;
-                }
-                else if(shieldHealth==0)
-                {
-                    //change sprite to broken shield.
-                    spriteRenderer.sprite = noShield;
-                    shieldBreak = true;
-                }
-                        
+        
+            //count down health on hits
+            if(health>0)
+            {
+                health--;
             }
             else
-            {
-                //count down health on hits
-                if(health>0)
-                    health--;
-                else
-                {     
-                    FindObjectOfType<PlayerMove>().Score(150);
-                    Destroy(gameObject);
-                }
+            {     
+                Destruct();
             }
+            
                 
             
         }
@@ -95,18 +95,24 @@ public class BossEnemy : MonoBehaviour
     }
     public void Destruct()
     {
-        FindObjectOfType<PlayerMove>().Score(150);
+        if(health<0)
+            bossHealth.text = "Boss Health:\n0/750";
+        //play death sound and have effect
+        FindObjectOfType<PlayerMove>().Score(5000);
         Destroy(gameObject);
     }
-    private IEnumerator fire(float interval)
+    private IEnumerator fire(float interval, int stage)//add stage to health amount
     {
-
+        interval = intervalE;//tweaks fire rate depending on stage
+        stage = phase;//shifts weapon type on boss
+        angle=Random.Range(-10.0f,10.0f);
+        direction=Random.Range(-10.0f,10.0f);
         yield return new WaitForSeconds(interval);
-        firedRound = Time.time;
-        GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down * 0.5f, Quaternion.identity);
+        //firedRound = Time.time;
+        GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down* 0.5f, Quaternion.identity);
         EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();
-        projectile.Launch(bulletSpeedE);
-        StartCoroutine(fire(interval));
+        projectile.LaunchBoss(bulletSpeedE, stage);
+        StartCoroutine(fire(interval, stage));
     }
     
 }

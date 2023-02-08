@@ -15,7 +15,7 @@ public class ToughEnemy : MonoBehaviour
     public int shotsPerS = 5;
     public float bulletSpeedE= 750.0f;
     public float intervalE = .7f;
-    float firedRound;
+    //float firedRound;
     public SpriteRenderer spriteRenderer;
     public Sprite noShield;
     private GameObject player;
@@ -105,7 +105,7 @@ public class ToughEnemy : MonoBehaviour
     {
 
         yield return new WaitForSeconds(interval);
-        firedRound = Time.time;
+        //firedRound = Time.time;
         GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down * 0.5f, Quaternion.identity);
         EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();
         projectile.Launch(bulletSpeedE);
