@@ -61,13 +61,13 @@ public class BossEnemy : MonoBehaviour
             {
                 phase = 1;
                 bulletSpeedE= 150;
-                intervalE= .4f;
+                intervalE= .8f;
             }
         else if(health <= 200)
             {
                 phase = 2;
                 bulletSpeedE = 100;
-                intervalE = .2f;
+                intervalE = .6f;
             }
 
     }
