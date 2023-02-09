@@ -38,6 +38,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject projectileRocket;//Actually lazer now
     public GameObject projectileGrenade;
     private GameObject bossHere;
+    GameObject[] destroyAll;
     //public GameObject projectileLaunch;
     public TextMeshProUGUI scoreTotal;
     public TextMeshProUGUI winL;
@@ -51,11 +52,6 @@ public class PlayerMove : MonoBehaviour
     float verti;
     int weaponType = 1;
     float originalP;
-
-    public AudioClip shot;
-    public AudioClip dmg;
-     public AudioClip win;
-    public AudioClip lose;
 
     //lazers destroy enemy projectile
     // Start is called before the first frame update
@@ -242,7 +238,6 @@ public class PlayerMove : MonoBehaviour
         position.y = position.y + speed * verti * Time.deltaTime;
         rigidbody2d.MovePosition(position);
     }
-    //RETURN VALUE FROM WEAPON SCRIPT FOR SCORE!!!!!
     void Gun(int weaponType)//place weapon animations here 
     {
         
@@ -276,6 +271,12 @@ public class PlayerMove : MonoBehaviour
         
         bombCount--;
         bombT.text = "= " + bombCount.ToString();
+        destroyAll = GameObject.FindGameObjectsWithTag ("Enemy");
+        for(var i = 0 ; i < destroyAll.Length ; i ++)
+        {
+            Destroy(destroyAll[i]);
+        }
+        Score(500);
         //SOUND EFFECT AND EXPLOSION ANIMATION
         //DO IT FOR BIG ENEMY
                 /*

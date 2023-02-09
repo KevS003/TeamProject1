@@ -31,23 +31,10 @@ public class WeaponFire : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D impact)
     {
-        if(impact.collider.tag == "SmallE")
+        if(impact.collider.tag == "Enemy")
         {
                 Destroy(gameObject);
                 Debug.Log("ENEMY HIT");
-        }
-        else if(impact.collider.tag =="BigE")
-        {
-            Destroy(gameObject);
-        }
-        else if(impact.collider.tag == "ToughE")
-        {
-            Destroy(gameObject);
-            
-        }
-        else if(impact.collider.tag == "BossE")
-        {
-            Destroy(gameObject);
         }
 
     }

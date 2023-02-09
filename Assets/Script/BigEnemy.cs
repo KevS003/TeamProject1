@@ -19,6 +19,7 @@ public class BigEnemy : MonoBehaviour
     PlayerMove playerScript;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
+    bool lastBombUsed = false;
     
     // Start is called before the first frame update
     void Awake()
@@ -27,24 +28,31 @@ public class BigEnemy : MonoBehaviour
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerMove>();
         StartCoroutine(fire(intervalE));
     }
     
     void Update()
     {
-        int bombAmount = playerScript.bombCount;
-        if(Input.GetKey(KeyCode.Q)&& bombAmount>0)
+        /*
+        if(player == null)
         {
-            Destruct();
+            player = GameObject.FindWithTag("Player");
+        }
+        if(Input.GetKey(KeyCode.Q) && player!= null)
+        {
+            playerScript = player.GetComponent<PlayerMove>();
+            int bombAmount = playerScript.bombCount;
+            if(bombAmount>-1&& lastBombUsed ==false)
+            {
+                Destruct();
+                if(bombAmount ==0)
+                {
+                    lastBombUsed = true;
+                }
+            }
             //int bombCounter = FindObjectofType<PlayerMove>().bombCount;
             
-        }
-        float timer = playerScript.usablTime;
-        if(timer<=0)
-        {
-            Destroy(gameObject);
-        }
+        }*/
 
     }
     void OnCollisionEnter2D(Collision2D contact)

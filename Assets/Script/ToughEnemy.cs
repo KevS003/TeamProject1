@@ -9,6 +9,7 @@ public class ToughEnemy : MonoBehaviour
 {
     public float speed;
     bool shieldBreak= false;
+    int bombAmount;
     public int shieldHealth = 25;
     public int scoreWorth=50;
     public int health = 15;
@@ -18,42 +19,72 @@ public class ToughEnemy : MonoBehaviour
     //float firedRound;
     public SpriteRenderer spriteRenderer;
     public Sprite noShield;
+    public Transform[] targets;
     private GameObject player;
     public GameObject shot;
     PlayerMove playerScript;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
+    public Transform startMarker;
+    public Transform endMarker;
+    bool lastBombUsed = false;
+    private float startTime;
+
+    private float journeyLength;
     
     // Start is called before the first frame update
     void Awake()
     {
+        startTime = Time.time;
+        journeyLength = Vector2.Distance(startMarker.position, endMarker.position);
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerMove>();
+        if(player!= null)
+        {
+            player = GameObject.FindWithTag("Player");
+            playerScript = player.GetComponent<PlayerMove>();
+        }
         StartCoroutine(fire(intervalE));
     }
     
     // Update is called once per frame
     void FixedUpdate()
     {
-        //put projectiles here
+        float distCovered = (Time.time - startTime) * speed;// Measures time passed to get a pace.//Speed changes how fast coordinates change later
+        float fracJourney = distCovered / journeyLength;
+        Vector2 position = rigidbody2dE.position;
+        /*
+        position.x = position.x + speed * 0 * Time.deltaTime;//seconds to render a frame to keep movement consistent
+        position.y = position.y + speed * -1 * Time.deltaTime;
+        rigidbody2dE.MovePosition(position);*/
+        transform.position = Vector2.Lerp(startMarker.position, endMarker.position, Mathf.PingPong(fracJourney, 1));
+        //movement here
     }
     void Update()
     {
-        int bombAmount = playerScript.bombCount;
-        if(Input.GetKey(KeyCode.Q)&& bombAmount>0)
+        /*
+        if(player == null)
         {
-            Destruct();
-            //int bombCounter = FindObjectofType<PlayerMove>().bombCount;
+            player = GameObject.FindWithTag("Player");
+            playerScript = player.GetComponent<PlayerMove>();
             
         }
-        float timer = playerScript.usablTime;
-        if(timer<=0)
+        else
+            bombAmount = playerScript.bombCount;
+        if(Input.GetKey(KeyCode.Q) && bombAmount>=0 &&lastBombUsed == false)
         {
-            Destroy(gameObject);
-        }
+
+            Destruct();
+            if(bombAmount ==0)
+            {
+                lastBombUsed = true;
+            }
+
+            //int bombCounter = FindObjectofType<PlayerMove>().bombCount;
+            
+        }*/
 
     }
     void OnCollisionEnter2D(Collision2D contact)

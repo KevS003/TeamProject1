@@ -12,6 +12,7 @@ public class SmallEnemy : MonoBehaviour
     int lnR = 1;
     int amountHit = 0;
     public int scoreWorth=50;//hi
+    bool lastBombUsed = false;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
     private GameObject player;
@@ -23,7 +24,6 @@ public class SmallEnemy : MonoBehaviour
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerMove>();
         
         if(Random.value<0.5)
             lnR = -1;
@@ -45,13 +45,26 @@ public class SmallEnemy : MonoBehaviour
 
    void Update()
     {
-        int bombAmount = playerScript.bombCount;
-        if(Input.GetKey(KeyCode.Q)&& bombAmount>0)
+        /*
+        if(player == null)
         {
-            Destruct();
+            player = GameObject.FindWithTag("Player");
+        }
+        if(Input.GetKey(KeyCode.Q) && player!= null)
+        {
+            playerScript = player.GetComponent<PlayerMove>();
+            int bombAmount = playerScript.bombCount;
+            if(bombAmount>0&& lastBombUsed ==false)
+            {
+                Destruct();
+                if(bombAmount ==0)
+                {
+                    lastBombUsed = true;
+                }
+            }
             //int bombCounter = FindObjectofType<PlayerMove>().bombCount;
             
-        }
+        }*/
     }
 
     void OnCollisionEnter2D(Collision2D contact)
