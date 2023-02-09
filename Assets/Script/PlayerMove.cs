@@ -51,9 +51,13 @@ public class PlayerMove : MonoBehaviour
     float verti;
     int weaponType = 1;
     float originalP;
-
-    public AudioClip shot;
+    public AudioSource gameMusic;
+    AudioSource playerAudio;
+    public AudioClip shotR;
+    public AudioClip shotL;
+    public AudioClip shotB;
     public AudioClip dmg;
+    public AudioClip nxt;
      public AudioClip win;
     public AudioClip lose;
 
@@ -64,6 +68,7 @@ public class PlayerMove : MonoBehaviour
         controlAct = true;
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        playerAudio = GetComponent<AudioSource>();
         cHealth = maxHealth;
         originalBspeed = bulletSpeed;
         originalP = speed;
@@ -173,6 +178,8 @@ public class PlayerMove : MonoBehaviour
             }
             if(Input.GetKey(KeyCode.Space))
             {
+                if(weaponType == 2)
+                    PlaySound(shotL);
                 Gun(weaponType);
             }
         }
@@ -183,6 +190,8 @@ public class PlayerMove : MonoBehaviour
             //press R to restart current 
             if(lvlTimer>0)
             {
+                gameMusic.enabled = false;
+                PlaySound(lose);
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.R))
                 {
@@ -200,6 +209,8 @@ public class PlayerMove : MonoBehaviour
             }
             else if(lvlTimer<=0)
             {
+                gameMusic.enabled = false;
+                PlaySound(win);
                 winL.text = "You made it to the village press\nKey: N for next level or ESC for main menu";
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.N))
@@ -251,6 +262,7 @@ public class PlayerMove : MonoBehaviour
             shotsPerS= 20;
             if(Time.time - firedRound >1/shotsPerS)//POWER UP: extra swords that track enemy
             {
+                PlaySound(shotR);
                 firedRound = Time.time;
                 GameObject projectileObject = Instantiate(projectileRapid, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);//NO ROTATION
                 WeaponFire projectile = projectileObject.GetComponent<WeaponFire>();
@@ -273,7 +285,7 @@ public class PlayerMove : MonoBehaviour
     //Whipes screen
     void Bomb()
     {
-        
+        PlaySound(shotB);
         bombCount--;
         bombT.text = "= " + bombCount.ToString();
         //SOUND EFFECT AND EXPLOSION ANIMATION
@@ -296,6 +308,7 @@ public class PlayerMove : MonoBehaviour
                 cHealth-=dmgAmount;
                 Debug.Log(cHealth.ToString());
                 lives.text = "Lives: " + cHealth.ToString();
+                PlaySound(dmg);
                 invincible = true;
                 invincibleTimer = timeInvincible;
                 //This is where you set an animation to show the player got hit. and add the sound 
@@ -332,8 +345,19 @@ public class PlayerMove : MonoBehaviour
     }
     void GameOver()
     {
+         gameMusic.enabled = false;
+         PlaySound(win);
          controlAct = false;
          gameOver = true;
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip == lose || clip == win)
+        {
+            playerAudio.volume = 0.2f;
+        }
+        playerAudio.PlayOneShot(clip);
     }
     /*void LoseCond()
     {

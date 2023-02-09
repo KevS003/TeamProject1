@@ -26,6 +26,10 @@ public class BossEnemy : MonoBehaviour
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
     
+    AudioSource bigEAudio;
+    public AudioClip dmg;
+    public AudioClip shoot; 
+    
     void Awake()
     {
         spawnHealth = health;
@@ -76,6 +80,7 @@ public class BossEnemy : MonoBehaviour
             //count down health on hits
             if(health>0)
             {
+                //bigEAudio.PlayOneShot(dmg);
                 health--;
             }
             else
@@ -108,6 +113,7 @@ public class BossEnemy : MonoBehaviour
         angle=Random.Range(-10.0f,10.0f);
         direction=Random.Range(-10.0f,10.0f);
         yield return new WaitForSeconds(interval);
+        //bigEAudio.PlayOneShot(shoot);
         //firedRound = Time.time;
         GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down* 0.5f, Quaternion.identity);
         EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();

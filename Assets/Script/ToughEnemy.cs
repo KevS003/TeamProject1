@@ -21,8 +21,11 @@ public class ToughEnemy : MonoBehaviour
     private GameObject player;
     public GameObject shot;
     PlayerMove playerScript;
+    AudioSource toughEAudio;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
+    public AudioClip dmg;
+    public AudioClip shooting;
     
     // Start is called before the first frame update
     void Awake()
@@ -30,6 +33,7 @@ public class ToughEnemy : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
+        toughEAudio = GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerMove>();
         StartCoroutine(fire(intervalE));
@@ -98,6 +102,7 @@ public class ToughEnemy : MonoBehaviour
     }
     public void Destruct()
     {
+        toughEAudio.PlayOneShot(dmg);
         FindObjectOfType<PlayerMove>().Score(150);
         Destroy(gameObject);
     }
@@ -105,6 +110,7 @@ public class ToughEnemy : MonoBehaviour
     {
 
         yield return new WaitForSeconds(interval);
+        toughEAudio.PlayOneShot(shooting);
         //firedRound = Time.time;
         GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down * 0.5f, Quaternion.identity);
         EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();

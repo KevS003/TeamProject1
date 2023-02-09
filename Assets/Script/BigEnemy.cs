@@ -19,6 +19,9 @@ public class BigEnemy : MonoBehaviour
     PlayerMove playerScript;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
+    AudioSource bigEAudio;
+    public AudioClip dmg;
+    public AudioClip shoot; 
     
     // Start is called before the first frame update
     void Awake()
@@ -26,6 +29,7 @@ public class BigEnemy : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
+        bigEAudio = GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerMove>();
         StartCoroutine(fire(intervalE));
@@ -74,6 +78,7 @@ public class BigEnemy : MonoBehaviour
     }
     public void Destruct()
     {
+        bigEAudio.PlayOneShot(dmg);
         FindObjectOfType<PlayerMove>().Score(300);
         Destroy(gameObject);
     }
@@ -81,6 +86,7 @@ public class BigEnemy : MonoBehaviour
     {
 
         yield return new WaitForSeconds(interval);
+        bigEAudio.PlayOneShot(shoot);
         firedRound = Time.time;
         GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down * 0.5f, Quaternion.identity);
         EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();
