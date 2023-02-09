@@ -52,6 +52,11 @@ public class PlayerMove : MonoBehaviour
     int weaponType = 1;
     float originalP;
 
+    public AudioClip shot;
+    public AudioClip dmg;
+     public AudioClip win;
+    public AudioClip lose;
+
     //lazers destroy enemy projectile
     // Start is called before the first frame update
     void Start()
