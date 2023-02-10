@@ -52,6 +52,16 @@ public class PlayerMove : MonoBehaviour
     float verti;
     int weaponType = 1;
     float originalP;
+    public AudioSource gameMusic;
+    AudioSource playerAudio;
+    public AudioClip shotR;
+    public AudioClip shotL;
+    public AudioClip shotB;
+    public AudioClip dmg;
+    public AudioClip nxt;
+     public AudioClip win;
+    public AudioClip lose;
+    public GameObject damage;
 
     //lazers destroy enemy projectile
     // Start is called before the first frame update
@@ -60,6 +70,7 @@ public class PlayerMove : MonoBehaviour
         controlAct = true;
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        playerAudio = GetComponent<AudioSource>();
         cHealth = maxHealth;
         originalBspeed = bulletSpeed;
         originalP = speed;
@@ -134,6 +145,8 @@ public class PlayerMove : MonoBehaviour
 
                 if (invincibleTimer < 0)
                 {
+                    //change animation back to normal not immune anymore here ....................
+                    //animator.SetTrigger("WhateverUWannaNameIt");
                     invincible = false;
                     gameObject.tag = "Player";
                     
@@ -145,12 +158,13 @@ public class PlayerMove : MonoBehaviour
                 if(weaponType<2)//change sprite here to match weapon being used, match sound depending on weapon being used
                 {
                     weaponType++;
-                    if(weaponType==2)
-                        bulletSpeed *= .60f;
-                        speed = 3;
+                    //change sprite to hold laser here if available
+                    bulletSpeed *= .60f;
+                    speed = 3;
                 }
                 else
                 {
+                    //change back to regular weapon
                     speed = originalP;
                     weaponType = 1;
                     bulletSpeed = originalBspeed;
@@ -162,7 +176,8 @@ public class PlayerMove : MonoBehaviour
             {
                 if(bombCount>0)
                 {
-
+                    //bomb activation animation here
+                    //Animator.SetTrigger("");
                     Bomb();
                 }
                     
@@ -179,6 +194,8 @@ public class PlayerMove : MonoBehaviour
             //press R to restart current 
             if(lvlTimer>0)
             {
+                gameMusic.enabled = false;
+                PlaySound(lose);
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.R))
                 {
@@ -196,6 +213,8 @@ public class PlayerMove : MonoBehaviour
             }
             else if(lvlTimer<=0)
             {
+                gameMusic.enabled = false;
+                PlaySound(win);
                 winL.text = "You made it to the village press\nKey: N for next level or ESC for main menu";
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.N))
@@ -271,6 +290,8 @@ public class PlayerMove : MonoBehaviour
         
         bombCount--;
         bombT.text = "= " + bombCount.ToString();
+        //deactivate bomb anim here
+        //animation.SetTrigger("") change back to idle walking animaiton
         destroyAll = GameObject.FindGameObjectsWithTag ("Enemy");
         for(var i = 0 ; i < destroyAll.Length ; i ++)
         {
@@ -299,16 +320,18 @@ public class PlayerMove : MonoBehaviour
                 lives.text = "Lives: " + cHealth.ToString();
                 invincible = true;
                 invincibleTimer = timeInvincible;
+                //BEGIN INVINCIBLE ANIMATION HERE ............
                 //This is where you set an animation to show the player got hit. and add the sound 
                 //animator.SetTrigger("Hit");
-                //GameObject projectileObject = Instantiate(damage, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-                //PlaySound(dmg);
+                GameObject projectileObject = Instantiate(damage, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);//particle effect for getting hit gets spawned
+                PlaySound(dmg);
             }
             if(cHealth == 0)
             {
                 controlAct = false;
                 lvlOver = true;
                 //set sprite to dead sprite here//dead sound effect here
+                //animator.SetTrigger("") ded sprite or animation here. 
                 //LoseCond();
             }
         }
@@ -335,6 +358,14 @@ public class PlayerMove : MonoBehaviour
     {
          controlAct = false;
          gameOver = true;
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip == lose || clip == win)
+        {
+            playerAudio.volume = 0.2f;
+        }
+        playerAudio.PlayOneShot(clip);
     }
     /*void LoseCond()
     {

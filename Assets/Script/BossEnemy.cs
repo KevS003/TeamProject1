@@ -25,6 +25,10 @@ public class BossEnemy : MonoBehaviour
     PlayerMove playerScript;
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
+    AudioSource bigEAudio;
+    public AudioClip dmg;
+    public AudioClip shoot; 
+    public GameObject damage;
     
     void Awake()
     {
@@ -32,6 +36,7 @@ public class BossEnemy : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
+        bigEAudio = GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerMove>();
         health = spawnHealth;
@@ -47,6 +52,7 @@ public class BossEnemy : MonoBehaviour
         {
             //blink red
             health-=bombDmg; 
+            GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
             if(health<0)
             {
                 Destruct();
@@ -72,7 +78,8 @@ public class BossEnemy : MonoBehaviour
         if(contact.collider.tag == "Projectile")
         {
             
-        
+            bigEAudio.PlayOneShot(dmg);
+            GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
             //count down health on hits
             if(health>0)
             {
@@ -108,6 +115,7 @@ public class BossEnemy : MonoBehaviour
         angle=Random.Range(-10.0f,10.0f);
         direction=Random.Range(-10.0f,10.0f);
         yield return new WaitForSeconds(interval);
+        bigEAudio.PlayOneShot(shoot);
         //firedRound = Time.time;
         GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down* 0.5f, Quaternion.identity);
         EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();

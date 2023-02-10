@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 202090210204520104}
   - component: {fileID: 8964305838302619343}
   - component: {fileID: 8427609964806137014}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: ToughEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -112,6 +112,9 @@ MonoBehaviour:
   shot: {fileID: 5164341710083342371, guid: 2bb4d736bdfa7e144a374c646845ff3b, type: 3}
   startMarker: {fileID: 3802633205005360092, guid: 43ea1fccce750834ba50f62ff7f9262f, type: 3}
   endMarker: {fileID: 665808085668005409, guid: da5cf65123c7f194e8dc74fd0567704a, type: 3}
+  dmg: {fileID: 0}
+  shooting: {fileID: 0}
+  damage: {fileID: 2437074214213360737, guid: 8d8b56bac49427b47bdd2f102f784178, type: 3}
 --- !u!58 &8964305838302619343
 CircleCollider2D:
   m_ObjectHideFlags: 0

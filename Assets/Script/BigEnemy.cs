@@ -20,6 +20,10 @@ public class BigEnemy : MonoBehaviour
     Animator animatorE;
     Rigidbody2D rigidbody2dE;
     bool lastBombUsed = false;
+    AudioSource bigEAudio;
+    public AudioClip dmg;
+    public AudioClip shoot; 
+    public GameObject damage;
     
     // Start is called before the first frame update
     void Awake()
@@ -27,43 +31,29 @@ public class BigEnemy : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
+        bigEAudio = GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player");
         StartCoroutine(fire(intervalE));
     }
     
     void Update()
     {
-        /*
-        if(player == null)
-        {
-            player = GameObject.FindWithTag("Player");
-        }
-        if(Input.GetKey(KeyCode.Q) && player!= null)
-        {
-            playerScript = player.GetComponent<PlayerMove>();
-            int bombAmount = playerScript.bombCount;
-            if(bombAmount>-1&& lastBombUsed ==false)
-            {
-                Destruct();
-                if(bombAmount ==0)
-                {
-                    lastBombUsed = true;
-                }
-            }
-            //int bombCounter = FindObjectofType<PlayerMove>().bombCount;
-            
-        }*/
+
 
     }
     void OnCollisionEnter2D(Collision2D contact)
     {
         if(contact.collider.tag == "Projectile")
         {
-
+            
             
                 //count down health on hits
                 if(health>0)
+                {
                     health--;
+                    bigEAudio.PlayOneShot(dmg);
+                    GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
+                }
                 else
                 {     
                     FindObjectOfType<PlayerMove>().Score(300);
@@ -89,6 +79,7 @@ public class BigEnemy : MonoBehaviour
     {
 
         yield return new WaitForSeconds(interval);
+        bigEAudio.PlayOneShot(shoot);
         firedRound = Time.time;
         GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down * 0.5f, Quaternion.identity);
         EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();

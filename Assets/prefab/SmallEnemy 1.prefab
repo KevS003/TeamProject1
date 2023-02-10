@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   scoreWorth: 50
+  damage: {fileID: 2437074214213360737, guid: 8d8b56bac49427b47bdd2f102f784178, type: 3}
 --- !u!61 &-2648759591624923591
 BoxCollider2D:
   m_ObjectHideFlags: 0

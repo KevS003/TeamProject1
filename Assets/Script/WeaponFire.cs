@@ -33,8 +33,12 @@ public class WeaponFire : MonoBehaviour
     {
         if(impact.collider.tag == "Enemy")
         {
-                Destroy(gameObject);
-                Debug.Log("ENEMY HIT");
+            Destroy(gameObject);
+                
+        }
+        else if(impact.collider.tag == "BossE")
+        {
+            Destroy(gameObject);
         }
 
     }

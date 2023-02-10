@@ -17,12 +17,16 @@ public class SmallEnemy : MonoBehaviour
     Rigidbody2D rigidbody2dE;
     private GameObject player;
     PlayerMove playerScript;
+    AudioSource smallEAudio;
+    AudioClip dmg;
+    public GameObject damage;
     
     // Start is called before the first frame update
     void Awake()
     {
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
+        smallEAudio = GetComponent<AudioSource>();
         player = GameObject.FindWithTag("Player");
         
         if(Random.value<0.5)
@@ -76,6 +80,7 @@ public class SmallEnemy : MonoBehaviour
                 FindObjectOfType<PlayerMove>().Score(50);
                 amountHit++;
             }
+            GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
             Destroy(gameObject);
         }
         if(contact.collider.tag == "Player")
@@ -91,6 +96,7 @@ public class SmallEnemy : MonoBehaviour
     }
     public void Destruct()
     {
+        smallEAudio.PlayOneShot(dmg);
         FindObjectOfType<PlayerMove>().Score(50);
         Destroy(gameObject);
     

@@ -31,6 +31,11 @@ public class ToughEnemy : MonoBehaviour
     private float startTime;
 
     private float journeyLength;
+    public AudioClip dmg;
+    public AudioClip shooting;
+    AudioSource toughEAudio;
+    public GameObject damage;
+    
     
     // Start is called before the first frame update
     void Awake()
@@ -38,6 +43,7 @@ public class ToughEnemy : MonoBehaviour
         startTime = Time.time;
         journeyLength = Vector2.Distance(startMarker.position, endMarker.position);
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        toughEAudio = GetComponent<AudioSource>();
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
@@ -91,6 +97,7 @@ public class ToughEnemy : MonoBehaviour
     {
         if(contact.collider.tag == "Projectile")
         {
+            GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
             if(shieldBreak == false)
             {
             
@@ -101,7 +108,8 @@ public class ToughEnemy : MonoBehaviour
                 else if(shieldHealth==0)
                 {
                     //change sprite to broken shield.
-                    spriteRenderer.sprite = noShield;
+                    //spriteRenderer.sprite = noShield; or use an animation instead
+                    //animatorE.SetTrigger("")// whatever u named it on Unity
                     shieldBreak = true;
                 }
                         
@@ -136,6 +144,7 @@ public class ToughEnemy : MonoBehaviour
     {
 
         yield return new WaitForSeconds(interval);
+        toughEAudio.PlayOneShot(shooting);
         //firedRound = Time.time;
         GameObject projectileObject = Instantiate(shot, rigidbody2dE.position + Vector2.down * 0.5f, Quaternion.identity);
         EnemyFIre projectile = projectileObject.GetComponent<EnemyFIre>();
