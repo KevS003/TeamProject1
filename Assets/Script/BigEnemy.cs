@@ -52,7 +52,6 @@ public class BigEnemy : MonoBehaviour
                 {
                     health--;
                     bigEAudio.PlayOneShot(dmg);
-                    GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
                 }
                 else
                 {     
@@ -72,6 +71,7 @@ public class BigEnemy : MonoBehaviour
     }
     public void Destruct()
     {
+        GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
         FindObjectOfType<PlayerMove>().Score(300);
         Destroy(gameObject);
     }

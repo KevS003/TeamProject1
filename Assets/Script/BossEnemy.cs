@@ -53,7 +53,7 @@ public class BossEnemy : MonoBehaviour
             //blink red
             health-=bombDmg; 
             GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
-            if(health<0)
+            if(health<0 || health ==0)
             {
                 Destruct();
             }     
@@ -79,14 +79,15 @@ public class BossEnemy : MonoBehaviour
         {
             
             bigEAudio.PlayOneShot(dmg);
-            GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
+            
             //count down health on hits
             if(health>0)
             {
                 health--;
             }
             else
-            {     
+            {   
+                GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);  
                 Destruct();
             }
             
@@ -102,8 +103,8 @@ public class BossEnemy : MonoBehaviour
     }
     public void Destruct()
     {
-        if(health<0)
-            bossHealth.text = "Boss Health:\n0/750";
+        
+        bossHealth.text = "Boss Health:\n0/750";
         //play death sound and have effect
         FindObjectOfType<PlayerMove>().Score(5000);
         Destroy(gameObject);

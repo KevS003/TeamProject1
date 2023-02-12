@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 426123801400139239}
   - component: {fileID: 2345747801611427196}
   - component: {fileID: 1220059281262144274}
+  - component: {fileID: 5171935109394889354}
   m_Layer: 9
   m_Name: TempPro
   m_TagString: Projectile
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 2195adc28b095144ea795a559c69872c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,3 +137,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704d7a444847e0e4d9893716ec5e5f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5171935109394889354
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5164341710083342371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8a16569138337b64097cabc76cf39db9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

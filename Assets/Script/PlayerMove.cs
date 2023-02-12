@@ -376,7 +376,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (clip == lose || clip == win || clip == nxt)
         {
-            playerAudio.volume = 0.2f;
+            playerAudio.volume = 0.06f;
         }
         playerAudio.PlayOneShot(clip);
     }

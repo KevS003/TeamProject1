@@ -97,7 +97,7 @@ public class ToughEnemy : MonoBehaviour
     {
         if(contact.collider.tag == "Projectile")
         {
-            GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
+            
             if(shieldBreak == false)
             {
             
@@ -107,6 +107,7 @@ public class ToughEnemy : MonoBehaviour
                 }
                 else if(shieldHealth==0)
                 {
+                    GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
                     //change sprite to broken shield.
                     spriteRenderer.sprite = noShield; //or use an animation instead
                     //animatorE.SetTrigger("")// whatever u named it on Unity
@@ -120,7 +121,8 @@ public class ToughEnemy : MonoBehaviour
                 if(health>0)
                     health--;
                 else
-                {     
+                {   
+                    GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);  
                     FindObjectOfType<PlayerMove>().Score(150);
                     Destroy(gameObject);
                 }
@@ -137,6 +139,7 @@ public class ToughEnemy : MonoBehaviour
     }
     public void Destruct()
     {
+        
         FindObjectOfType<PlayerMove>().Score(150);
         Destroy(gameObject);
     }
