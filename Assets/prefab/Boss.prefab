@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 5145712728877879340}
   - component: {fileID: 5762989317144957525}
   - component: {fileID: 3770158618139652323}
+  - component: {fileID: 1551160969}
   m_Layer: 10
   m_Name: Boss
-  m_TagString: ToughE
+  m_TagString: BossE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 5056867006783229752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0036945343, y: 0.05828786, z: 0}
-  m_LocalScale: {x: 4.491304, y: 4.491304, z: 4.491304}
+  m_LocalScale: {x: 2.0697277, y: 2.0697277, z: 2.0697277}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+ufnBeMewIAADgFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFymzAQ/RWPzrUHCLZDby1xnB6SeOJ2cuEio8VoLCRGErGdjP+9KwGGur5YvLe7evt24YtwaWrIrdJrzdmzYkC+T4g7k2+TgXyCE90rueWf0Me8c2ZLF0R9zBu1XCEeujSjKrCa5z/kXrjgAMFG8kLpasX2kCpjDcIFFQaQ0sq6bInQ14Sc8G+auJQznqKlO33iKQkmFzzmIC3oUWgwm3ex4Szxv+WiS7mbzZeLaDmP7lfTYOnTG5kLWtXAXC9DlTDsa7S3SOyyi3BMroTgppNI7Ln2FqS0Ng02iAGMU2zZ6wq9nhL4vrSugXH6a1EYsJ0jmp4fuEbv2rrkp2oNrag5tMo+qGi8hOjeq2qLPv/HT0NPF1pVT/29YeDusCXPD2/0nFNjR46P4YeRdG/QkYoD3Ql4L0G+qLVWjWRIWt241MZA9DA8XltLS8gPA95KvQGbenA8uA4tTKIguXMT6sbm2rl4I06p4NXORc/iFtgK5c33CwIax/QLtfv1MV1VRJ2gPwZ+0/14zzrikWtjkeoalk7pTjXahZKVt8811thUaQke7vTXIKmw5w2WsbfTvOFG194wj9S9Ud3lHde/KDcpHh7ig+CG2qjjdW6mVMdnMOVrYwWXMIh2xAv6lCop22Ube9KnbRtd0HyUtm84+3fLyF3CIM6joGBFHMTxbprQMApiFsZxuIsWdEf8GnKJfVKxaYV29uDU5FBc4sr1H5rJWtPaLz7T9Ljmn5UaWc5loba5BpCvbYWrcNB4Cb6ibMU4GrQFa7n08yZfGREqPwDLroUy3+nqZDXNhioZqfmHsg7JSOq/LBlx8HWtNxo+OBzd5X2xC7n8BVBLAwQUAAAICAAAmJ/rWy4iZm0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0krFlSqpJspFBWkqaiYGJSZKuZaKhkYFJiqGJiWGSkVliklIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/rn5wXjHsCAAA4BQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rWy4iZm0AAAB4AAAACQAkAAAAAAAAAAAAAADIAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAIADAAAAAA==
+    dataString: UEsDBBQAAAgIAACYn+u6dc1agQIAAD4FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFy2jAQ/RVG58JIxiG4txYI6YGECe3k4ouw1liDLHkkOUAy/Hsl2cYu5YL83u7q7du1vxCXpoLMKr3WnG0UA/R9hPwZfRv15DOc6UHJHf+ELuadM1v4IBpi3qjlyuHEpxlVgtU8+yEPwgdjB9aS50qXK3aAhTLWODinwoCjtLI+Wzroa4TO7m+c+JSLO0WP/vTpTgkeXd0xA2lBD0Lx5AH7X9JmkAmeEYJJ1OaRyTx5nCZkPl2N8WOoUctM0LIC5hvqSxHSlWiukq7VNsIzmRKCm1Ynspcq+LCrCtDgjWCcuraDNjJ5cEAB/FBY38Qw+zXPDdjWFU0vS66df01Z9FM1ppbUHBthH1TUQUE0D6Kaopv/+DEJdK5V+dzdS7C/wxY8O77RS0aNHbg+hJcD6cGfExVHuhfwXoB8UWutaskcaXXtU2sD0bJ/vLW2KCA79ngj9Q6sq97w25An03lM5rPpzI+onZtv6BqsOC8EL/c+fhI3wE6o4H5YE9BuTr+c+rBEpq3rUC/pj4Hf9DDctpZ44tpYR7UtS691r2rtQ9EqGOhbq+1CaQkBbjuoQFJhL1tXxt7P844bXHvHPFH/XrWXt1z3utylBLiPx/iO2qrTbXKmUKcNmOK1toJL6EV74sX5tFBSNus29KRL29U6p9kg7VBz9u+eoWnCIM4inLM8xnG8HyeURDhmJI7JPprRPQqLyKXrk4ptI7S1x01N9sWlW7ruczNaa1qF1Weantb8s1QDy7nM1S7TAPK1qXATDtpd4t5RtmLcGbQDa7kM80ZfKRIqOwJLb4XS0OnqbDVN+yopqviHsh5J0SJ8X1Lk4dtibzV8cDj5y7tiV3T9C1BLAwQUAAAICAAAmJ/rWy4iZm0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0krFlSqpJspFBWkqaiYGJSZKuZaKhkYFJiqGJiWGSkVliklIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/runXNWoECAAA+BQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rWy4iZm0AAAB4AAAACQAkAAAAAAAAAAAAAADOAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAIYDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -230,12 +231,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   targets:
-  - {fileID: 3846364890518544924, guid: b69888403cd6a97459f11627436a561f, type: 3}
-  - {fileID: 1078492535100819979, guid: 373812e6dffacad4da4fe2591e20480a, type: 3}
-  - {fileID: 5867856435649882179, guid: 92c9a359f58efaf488ffe2718100c25c, type: 3}
-  - {fileID: 7331560027675445306, guid: 428aac3a61c7b034ea64c5f1ec891e81, type: 3}
-  - {fileID: 6080646111498895556, guid: c013bf097e1b2524c83ffc2929aef698, type: 3}
-  - {fileID: 8347919260535923075, guid: 94ba474f2b88134438e047c6911a8b1a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   delay: 0
 --- !u!58 &5145712728877879340
 CircleCollider2D:
@@ -289,8 +290,8 @@ MonoBehaviour:
   speed: 0
   scoreWorth: 50
   spawnHealth: 0
-  health: 1000
-  bulletSpeedE: 750
+  health: 750
+  bulletSpeedE: 200
   intervalE: 0.7
   bombDmg: 150
   spriteRenderer: {fileID: 0}
@@ -298,5 +299,101 @@ MonoBehaviour:
   shot: {fileID: 5164341710083342371, guid: 2bb4d736bdfa7e144a374c646845ff3b, type: 3}
   bossHealth: {fileID: 0}
   dmg: {fileID: 0}
-  shoot: {fileID: 0}
-  damage: {fileID: 0}
+  shoot: {fileID: 8300000, guid: 2ba9217528d4a2748843bff13d8cda7f, type: 3}
+  damage: {fileID: 2437074214213360737, guid: 8d8b56bac49427b47bdd2f102f784178, type: 3}
+--- !u!82 &1551160969
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056867006783229752}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.395
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

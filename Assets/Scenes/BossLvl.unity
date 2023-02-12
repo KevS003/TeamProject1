@@ -365,7 +365,7 @@ MonoBehaviour:
   bombT: {fileID: 1646540595}
   gameMusic: {fileID: 216933376}
   shotR: {fileID: 8300000, guid: 16c1b6397b8297e42bad803d04327edb, type: 3}
-  shotL: {fileID: 8300000, guid: bfd12d3c54b9c1d46975fade83e4ada2, type: 3}
+  shotL: {fileID: 8300000, guid: eebe2c82178bffb4594439c1b1eb1b94, type: 3}
   shotB: {fileID: 8300000, guid: 610aeba9c04615340ae3fa2f554b184b, type: 3}
   dmg: {fileID: 8300000, guid: 523d271ee97b6b548bec61a66eb16a7f, type: 3}
   nxt: {fileID: 8300000, guid: b19cd734ba6935e489f2d4059f4f92df, type: 3}
@@ -472,7 +472,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -696,7 +696,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c70c6dc29954c444891dbd13b505a501, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.577
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2564,6 +2564,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1551160969, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
+      propertyPath: m_Volume
+      value: 0.427
+      objectReference: {fileID: 0}
     - target: {fileID: 3770158618139652323, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
       propertyPath: dmg
       value: 
@@ -2571,27 +2575,11 @@ PrefabInstance:
     - target: {fileID: 3770158618139652323, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
       propertyPath: shoot
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770158618139652323, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: damage
-      value: 
-      objectReference: {fileID: 2437074214213360737, guid: 8d8b56bac49427b47bdd2f102f784178, type: 3}
-    - target: {fileID: 3770158618139652323, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: health
-      value: 750
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: fc1745c74be8725498af26c5c23906b4, type: 3}
     - target: {fileID: 3770158618139652323, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
       propertyPath: bossHealth
       value: 
       objectReference: {fileID: 1463124506}
-    - target: {fileID: 3770158618139652323, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: bulletSpeedE
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 4255517766331407282, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: data.dataString
-      value: UEsDBBQAAAgIAACYn+u6dc1agQIAAD4FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFy2jAQ/RVG58JIxiG4txYI6YGECe3k4ouw1liDLHkkOUAy/Hsl2cYu5YL83u7q7du1vxCXpoLMKr3WnG0UA/R9hPwZfRv15DOc6UHJHf+ELuadM1v4IBpi3qjlyuHEpxlVgtU8+yEPwgdjB9aS50qXK3aAhTLWODinwoCjtLI+Wzroa4TO7m+c+JSLO0WP/vTpTgkeXd0xA2lBD0Lx5AH7X9JmkAmeEYJJ1OaRyTx5nCZkPl2N8WOoUctM0LIC5hvqSxHSlWiukq7VNsIzmRKCm1Ynspcq+LCrCtDgjWCcuraDNjJ5cEAB/FBY38Qw+zXPDdjWFU0vS66df01Z9FM1ppbUHBthH1TUQUE0D6Kaopv/+DEJdK5V+dzdS7C/wxY8O77RS0aNHbg+hJcD6cGfExVHuhfwXoB8UWutaskcaXXtU2sD0bJ/vLW2KCA79ngj9Q6sq97w25An03lM5rPpzI+onZtv6BqsOC8EL/c+fhI3wE6o4H5YE9BuTr+c+rBEpq3rUC/pj4Hf9DDctpZ44tpYR7UtS691r2rtQ9EqGOhbq+1CaQkBbjuoQFJhL1tXxt7P844bXHvHPFH/XrWXt1z3utylBLiPx/iO2qrTbXKmUKcNmOK1toJL6EV74sX5tFBSNus29KRL29U6p9kg7VBz9u+eoWnCIM4inLM8xnG8HyeURDhmJI7JPprRPQqLyKXrk4ptI7S1x01N9sWlW7ruczNaa1qF1Weantb8s1QDy7nM1S7TAPK1qXATDtpd4t5RtmLcGbQDa7kM80ZfKRIqOwJLb4XS0OnqbDVN+yopqviHsh5J0SJ8X1Lk4dtibzV8cDj5y7tiV3T9C1BLAwQUAAAICAAAmJ/rWy4iZm0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0krFlSqpJspFBWkqaiYGJSZKuZaKhkYFJiqGJiWGSkVliklIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/runXNWoECAAA+BQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rWy4iZm0AAAB4AAAACQAkAAAAAAAAAAAAAADOAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAIYDAAAAAA==
-      objectReference: {fileID: 0}
     - target: {fileID: 4255517766331407286, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
       propertyPath: targets.Array.data[0]
       value: 
@@ -2620,29 +2608,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 5056867006783229752, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5056867006783229752, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: m_TagString
-      value: BossE
-      objectReference: {fileID: 0}
     - target: {fileID: 7953386533287215485, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
       propertyPath: m_RootOrder
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7953386533287215485, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.0697277
-      objectReference: {fileID: 0}
-    - target: {fileID: 7953386533287215485, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.0697277
-      objectReference: {fileID: 0}
-    - target: {fileID: 7953386533287215485, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.0697277
       objectReference: {fileID: 0}
     - target: {fileID: 7953386533287215485, guid: fbaf24f7637b77940a67bc2fad20f0e7, type: 3}
       propertyPath: m_LocalPosition.x

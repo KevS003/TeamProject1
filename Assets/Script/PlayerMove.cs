@@ -176,6 +176,7 @@ public class PlayerMove : MonoBehaviour
             {
                 if(bombCount>0)
                 {
+                    PlaySound(shotB);
                     //bomb activation animation here
                     //Animator.SetTrigger("");
                     Bomb();
@@ -235,6 +236,8 @@ public class PlayerMove : MonoBehaviour
         }
         if(gameOver == true)
         {
+                gameMusic.enabled = false;
+                PlaySound(win);
                 winL.text = "You saved the Village! ESC for main menu";
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.Escape))//THIS IS THE PROBLEM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -265,6 +268,7 @@ public class PlayerMove : MonoBehaviour
             shotsPerS= 20;
             if(Time.time - firedRound >1/shotsPerS)//POWER UP: extra swords that track enemy
             {
+                PlaySound(shotR);   
                 firedRound = Time.time;
                 GameObject projectileObject = Instantiate(projectileRapid, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);//NO ROTATION
                 WeaponFire projectile = projectileObject.GetComponent<WeaponFire>();
@@ -276,6 +280,7 @@ public class PlayerMove : MonoBehaviour
             shotsPerS= 60;
             if(Time.time - firedRound >1/shotsPerS)
             {
+                PlaySound(shotL);
                 firedRound = Time.time;
                 GameObject projectileObject = Instantiate(projectileRocket, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
                 WeaponFire projectile = projectileObject.GetComponent<WeaponFire>();

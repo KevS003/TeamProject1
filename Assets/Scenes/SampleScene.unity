@@ -2382,6 +2382,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1702814744, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
+      propertyPath: m_Volume
+      value: 0.464
+      objectReference: {fileID: 0}
     - target: {fileID: 6475055241881650721, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
       propertyPath: winL
       value: 
@@ -2398,6 +2402,10 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 921173912}
+    - target: {fileID: 6475055241881650721, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 545309343}
     - target: {fileID: 6475055241881650721, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
       propertyPath: scoreTotal
       value: 
