@@ -65,6 +65,7 @@ public class PlayerMove : MonoBehaviour
     public Sprite laser;
     public Sprite sword;
     public SpriteRenderer spriteRenderer;
+    bool audioPlayed= false;
 
 
     //lazers destroy enemy projectile
@@ -376,9 +377,16 @@ public class PlayerMove : MonoBehaviour
     {
         if (clip == lose || clip == win || clip == nxt)
         {
-            playerAudio.volume = 0.06f;
+            if(audioPlayed == false)
+            {
+                playerAudio.volume = 0.06f;
+                audioPlayed = true;
+                playerAudio.PlayOneShot(clip);
+            }
+            
         }
-        playerAudio.PlayOneShot(clip);
+        else
+            playerAudio.PlayOneShot(clip);
     }
     /*void LoseCond()
     {

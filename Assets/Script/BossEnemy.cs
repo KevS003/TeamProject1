@@ -19,7 +19,7 @@ public class BossEnemy : MonoBehaviour
     int phase=0;
     public SpriteRenderer spriteRenderer;
     public Sprite noShield;
-    private GameObject player;
+    public GameObject player;
     public GameObject shot;
     public TextMeshProUGUI bossHealth;
     PlayerMove playerScript;
@@ -29,6 +29,7 @@ public class BossEnemy : MonoBehaviour
     public AudioClip dmg;
     public AudioClip shoot; 
     public GameObject damage;
+    int bombAmount;
     
     void Awake()
     {
@@ -37,8 +38,8 @@ public class BossEnemy : MonoBehaviour
         animatorE = GetComponent<Animator>();
         rigidbody2dE = GetComponent<Rigidbody2D>();
         bigEAudio = GetComponent<AudioSource>();
-        player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerMove>();
+        bombAmount = playerScript.bombCount;
         health = spawnHealth;
         bossHealth.enabled =true;
         StartCoroutine(fire(intervalE, 0));//starts at stage 0
@@ -47,9 +48,10 @@ public class BossEnemy : MonoBehaviour
     void Update()
     {
         bossHealth.text = "Boss Health:\n" + health.ToString("f0") + "/750";
-        int bombAmount = playerScript.bombCount;
+        //int bombAmount = playerScript.bombCount;
         if(Input.GetKeyDown(KeyCode.Q)&& bombAmount>0)
         {
+            bombAmount--;
             //blink red
             health-=bombDmg; 
             GameObject projectileObject = Instantiate(damage, rigidbody2dE.position + Vector2.up * 0.5f, Quaternion.identity);
