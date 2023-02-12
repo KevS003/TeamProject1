@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30.311}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 218.3, y: 11.1}
+  m_AnchoredPosition: {x: 220.8, y: 2.8}
   m_SizeDelta: {x: 186.9095, y: 93.043}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &104210786
@@ -381,8 +381,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203101951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22, y: 0.068327, z: 0}
-  m_LocalScale: {x: 2.4357429, y: 2.4357429, z: 2.4357429}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.9020842, y: 1.9020842, z: 1.9020842}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -425,8 +425,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.178}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -152.4, y: -11.7}
-  m_SizeDelta: {x: 328.95, y: 93.043}
+  m_AnchoredPosition: {x: -127.3, y: -11.3}
+  m_SizeDelta: {x: 266.5287, y: 78.7691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &251148078
 MonoBehaviour:
@@ -600,7 +600,7 @@ Transform:
   m_GameObject: {fileID: 294942300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.48, y: -0.20736271, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7809052, y: 0.7809052, z: 0.7809052}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -819,7 +819,7 @@ Transform:
   m_GameObject: {fileID: 413417353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7809052, y: 0.7809052, z: 0.7809052}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1157,7 +1157,7 @@ Transform:
   m_GameObject: {fileID: 519369225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7809052, y: 0.7809052, z: 0.7809052}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1232,7 +1232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30.613}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: -89}
+  m_AnchoredPosition: {x: 11, y: -113.3}
   m_SizeDelta: {x: 328.95, y: 93.043}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600929635
@@ -1525,20 +1525,26 @@ MonoBehaviour:
   m_text: 'How To Play:
 
 
-    use "WASD" to move
+    Use "WASD" to move.
 
 
-    Press R to change weapons
+    Press R to change weapons.
 
 
-    Press
-    the Space Bar to fire
+    Weak
+    Weapon does less damage but you move faster, good for smaller enemies.
 
 
-    Press Q to kill all enemies (does significant damage
-    to the Boss)
+    Strong
+    Weapon does more damage but you move slower, good for stronger enemies or enemies
+    with shields.
 
-'
+
+    Press the Space Bar to fire.
+
+
+    Press Q to activate your
+    bomb and kill all enemies (does significant damage to the Boss too!)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1977,7 +1983,7 @@ Transform:
   m_GameObject: {fileID: 1597124492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 988.923, y: 98.27623, z: -15.881957}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7809052, y: 0.7809052, z: 0.7809052}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2061,7 +2067,7 @@ Transform:
   m_GameObject: {fileID: 1611532127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.37, y: -3.24, z: 0}
-  m_LocalScale: {x: 0.71716, y: 0.71716, z: 0.71716}
+  m_LocalScale: {x: 0.560034, y: 0.560034, z: 0.560034}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

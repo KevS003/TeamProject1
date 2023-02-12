@@ -223,7 +223,7 @@ public class PlayerMove : MonoBehaviour
                 gameMusic.enabled = false;
                 
                 PlaySound(nxt);
-                winL.text = "You made it to the village press\nKey: N for next level or ESC for main menu";
+                winL.text = "You reached the boss! Press\nN for the next level or ESC to go to the main menu";
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.N))
                 {
@@ -246,7 +246,7 @@ public class PlayerMove : MonoBehaviour
                 gameMusic.enabled = false;
                 
                 PlaySound(win);
-                winL.text = "You saved the Village! ESC for main menu";
+                winL.text = "Congrats! You defeated the one responsible for this mess! Press ESC to return to the main menu";
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.Escape))//THIS IS THE PROBLEM !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 {
