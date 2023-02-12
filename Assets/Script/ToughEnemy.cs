@@ -108,7 +108,7 @@ public class ToughEnemy : MonoBehaviour
                 else if(shieldHealth==0)
                 {
                     //change sprite to broken shield.
-                    //spriteRenderer.sprite = noShield; or use an animation instead
+                    spriteRenderer.sprite = noShield; //or use an animation instead
                     //animatorE.SetTrigger("")// whatever u named it on Unity
                     shieldBreak = true;
                 }

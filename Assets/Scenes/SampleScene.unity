@@ -523,7 +523,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d0431021296d51b469f227da22bd66a2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.272
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2384,7 +2384,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1702814744, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
       propertyPath: m_Volume
-      value: 0.464
+      value: 0.298
       objectReference: {fileID: 0}
     - target: {fileID: 6475055241881650721, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
       propertyPath: winL
@@ -2395,9 +2395,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1049601791}
     - target: {fileID: 6475055241881650721, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
+      propertyPath: laser
+      value: 
+      objectReference: {fileID: 21300000, guid: b5ebfbbd2adac5642aeea473c7f5f1be, type: 3}
+    - target: {fileID: 6475055241881650721, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
       propertyPath: lives
       value: 
       objectReference: {fileID: 636315446}
+    - target: {fileID: 6475055241881650721, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 21300000, guid: e7c7e186066245e48ac160422a0a882d, type: 3}
     - target: {fileID: 6475055241881650721, guid: 73c5cd2ada208d942a2b3975bc1bf98b, type: 3}
       propertyPath: timer
       value: 

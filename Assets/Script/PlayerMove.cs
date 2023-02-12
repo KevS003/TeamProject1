@@ -62,6 +62,10 @@ public class PlayerMove : MonoBehaviour
      public AudioClip win;
     public AudioClip lose;
     public GameObject damage;
+    public Sprite laser;
+    public Sprite sword;
+    public SpriteRenderer spriteRenderer;
+
 
     //lazers destroy enemy projectile
     // Start is called before the first frame update
@@ -71,6 +75,7 @@ public class PlayerMove : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
         playerAudio = GetComponent<AudioSource>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         cHealth = maxHealth;
         originalBspeed = bulletSpeed;
         originalP = speed;
@@ -158,13 +163,13 @@ public class PlayerMove : MonoBehaviour
                 if(weaponType<2)//change sprite here to match weapon being used, match sound depending on weapon being used
                 {
                     weaponType++;
-                    //change sprite to hold laser here if available
+                    spriteRenderer.sprite = laser;
                     bulletSpeed *= .60f;
                     speed = 3;
                 }
                 else
                 {
-                    //change back to regular weapon
+                    spriteRenderer.sprite = sword;
                     speed = originalP;
                     weaponType = 1;
                     bulletSpeed = originalBspeed;
@@ -196,6 +201,7 @@ public class PlayerMove : MonoBehaviour
             if(lvlTimer>0)
             {
                 gameMusic.enabled = false;
+                
                 PlaySound(lose);
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.R))
@@ -215,7 +221,8 @@ public class PlayerMove : MonoBehaviour
             else if(lvlTimer<=0)
             {
                 gameMusic.enabled = false;
-                PlaySound(win);
+                
+                PlaySound(nxt);
                 winL.text = "You made it to the village press\nKey: N for next level or ESC for main menu";
                 winL.enabled = true;
                 if(Input.GetKeyDown(KeyCode.N))
@@ -237,6 +244,7 @@ public class PlayerMove : MonoBehaviour
         if(gameOver == true)
         {
                 gameMusic.enabled = false;
+                
                 PlaySound(win);
                 winL.text = "You saved the Village! ESC for main menu";
                 winL.enabled = true;
@@ -366,7 +374,7 @@ public class PlayerMove : MonoBehaviour
     }
     public void PlaySound(AudioClip clip)
     {
-        if (clip == lose || clip == win)
+        if (clip == lose || clip == win || clip == nxt)
         {
             playerAudio.volume = 0.2f;
         }
