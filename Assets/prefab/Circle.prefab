@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7c7e186066245e48ac160422a0a882d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,13 +140,13 @@ MonoBehaviour:
   timer: {fileID: 0}
   bombT: {fileID: 0}
   gameMusic: {fileID: 0}
-  shotR: {fileID: 0}
-  shotL: {fileID: 0}
-  shotB: {fileID: 0}
-  dmg: {fileID: 0}
-  nxt: {fileID: 0}
-  win: {fileID: 0}
-  lose: {fileID: 0}
+  shotR: {fileID: 8300000, guid: 16c1b6397b8297e42bad803d04327edb, type: 3}
+  shotL: {fileID: 8300000, guid: eebe2c82178bffb4594439c1b1eb1b94, type: 3}
+  shotB: {fileID: 8300000, guid: 610aeba9c04615340ae3fa2f554b184b, type: 3}
+  dmg: {fileID: 8300000, guid: 523d271ee97b6b548bec61a66eb16a7f, type: 3}
+  nxt: {fileID: 8300000, guid: b19cd734ba6935e489f2d4059f4f92df, type: 3}
+  win: {fileID: 8300000, guid: 190bbb1e6a3f2ff4dbd67f96e3b70da2, type: 3}
+  lose: {fileID: 8300000, guid: 6cb7dd9df7bb0d049b80772cbb449268, type: 3}
   damage: {fileID: 2437074214213360737, guid: 8d8b56bac49427b47bdd2f102f784178, type: 3}
 --- !u!58 &6475055241881650722
 CircleCollider2D:

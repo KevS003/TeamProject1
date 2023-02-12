@@ -292,6 +292,11 @@ MonoBehaviour:
   health: 1000
   bulletSpeedE: 750
   intervalE: 0.7
+  bombDmg: 150
   spriteRenderer: {fileID: 0}
   noShield: {fileID: 0}
   shot: {fileID: 5164341710083342371, guid: 2bb4d736bdfa7e144a374c646845ff3b, type: 3}
+  bossHealth: {fileID: 0}
+  dmg: {fileID: 0}
+  shoot: {fileID: 0}
+  damage: {fileID: 0}
